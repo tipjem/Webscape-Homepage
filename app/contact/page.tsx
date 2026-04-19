@@ -22,23 +22,48 @@ export default function ContactPage() {
         e.preventDefault();
         setIsSubmitting(true);
 
-        // Simulate API Request (Resend + Supabase Insert)
-        await new Promise((resolve) => setTimeout(resolve, 1500));
+        const form = e.target as HTMLFormElement;
+        const formData = new FormData(form);
+        const data = Object.fromEntries(formData.entries());
+        data.contactType = activeTab;
 
-        setIsSubmitting(false);
-        setToast({
-            show: true,
-            type: "success",
-            msg: "문의가 성공적으로 접수되었습니다. 담당자가 확인 후 연락드리겠습니다.",
-        });
+        try {
+            const response = await fetch('/api/contact', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data),
+            });
 
-        (e.target as HTMLFormElement).reset();
-        setBudget("");
-        setTimeline("");
+            const result = await response.json();
 
-        setTimeout(() => {
-            setToast((prev) => ({ ...prev, show: false }));
-        }, 4000);
+            if (!response.ok || result.error) {
+                throw new Error(result.error?.message || 'Failed to send');
+            }
+
+            setToast({
+                show: true,
+                type: "success",
+                msg: "문의가 성공적으로 접수되었습니다. 담당자가 확인 후 연락드리겠습니다.",
+            });
+
+            form.reset();
+            setBudget("");
+            setTimeline("");
+        } catch (error) {
+            console.error(error);
+            setToast({
+                show: true,
+                type: "error",
+                msg: "문의 전송 중 오류가 발생했습니다. 잠시 후 다시 시도해주세요.",
+            });
+        } finally {
+            setIsSubmitting(false);
+            setTimeout(() => {
+                setToast((prev) => ({ ...prev, show: false }));
+            }, 4000);
+        }
     };
 
     const inputClasses =
@@ -122,25 +147,25 @@ export default function ContactPage() {
                                 <div className="grid md:grid-cols-1 gap-6">
                                     <div>
                                         <label className={labelClasses}>회사명 / 브랜드명 *</label>
-                                        <input type="text" required placeholder="웹스케이프 컴퍼니" className={inputClasses} />
+                                        <input name="company" type="text" required placeholder="웹스케이프 컴퍼니" className={inputClasses} />
                                     </div>
                                 </div>
 
                                 <div className="grid md:grid-cols-2 gap-6">
                                     <div>
                                         <label className={labelClasses}>담당자 성함 / 직급 *</label>
-                                        <input type="text" required placeholder="홍길동 대표" className={inputClasses} />
+                                        <input name="manager" type="text" required placeholder="홍길동 대표" className={inputClasses} />
                                     </div>
                                     <div>
                                         <label className={labelClasses}>연락처 *</label>
-                                        <input type="tel" required placeholder="010-0000-0000" className={inputClasses} />
+                                        <input name="phone" type="tel" required placeholder="010-0000-0000" className={inputClasses} />
                                     </div>
                                 </div>
 
                                 <div className="grid md:grid-cols-1 gap-6">
                                     <div>
                                         <label className={labelClasses}>이메일 *</label>
-                                        <input type="email" required placeholder="example@company.com" className={inputClasses} />
+                                        <input name="email" type="email" required placeholder="example@company.com" className={inputClasses} />
                                     </div>
                                 </div>
 
@@ -149,6 +174,7 @@ export default function ContactPage() {
                                         <label className={labelClasses}>희망 예산 (VAT 별도) *</label>
                                         <div className="relative">
                                             <select
+                                                name="budget"
                                                 required
                                                 value={budget}
                                                 onChange={(e) => setBudget(e.target.value)}
@@ -172,6 +198,7 @@ export default function ContactPage() {
                                         <label className={labelClasses}>희망 오픈 일정 *</label>
                                         <div className="relative">
                                             <select
+                                                name="timeline"
                                                 required
                                                 value={timeline}
                                                 onChange={(e) => setTimeline(e.target.value)}
@@ -194,12 +221,13 @@ export default function ContactPage() {
 
                                 <div>
                                     <label className={labelClasses}>참고할 만한 레퍼런스 스타일 (선택)</label>
-                                    <input type="text" placeholder="https://example.com" className={inputClasses} />
+                                    <input name="reference" type="text" placeholder="https://example.com" className={inputClasses} />
                                 </div>
 
                                 <div>
                                     <label className={labelClasses}>세부 문의 내용 *</label>
                                     <textarea
+                                        name="details"
                                         required
                                         placeholder="프로젝트의 목적, 주요 기능, 타겟 고객 등을 상세히 적어주시면 더 정확한 상담이 가능합니다."
                                         className={cn(inputClasses, "h-40 resize-none")}
@@ -218,35 +246,36 @@ export default function ContactPage() {
                                 <div className="grid md:grid-cols-1 gap-6">
                                     <div>
                                         <label className={labelClasses}>회사명 / 브랜드명 *</label>
-                                        <input type="text" required placeholder="웹스케이프 컴퍼니" className={inputClasses} />
+                                        <input name="company" type="text" required placeholder="웹스케이프 컴퍼니" className={inputClasses} />
                                     </div>
                                 </div>
 
                                 <div className="grid md:grid-cols-2 gap-6">
                                     <div>
                                         <label className={labelClasses}>담당자 성함 / 직급 *</label>
-                                        <input type="text" required placeholder="홍길동 대표" className={inputClasses} />
+                                        <input name="manager" type="text" required placeholder="홍길동 대표" className={inputClasses} />
                                     </div>
                                     <div>
                                         <label className={labelClasses}>연락처 *</label>
-                                        <input type="tel" required placeholder="010-0000-0000" className={inputClasses} />
+                                        <input name="phone" type="tel" required placeholder="010-0000-0000" className={inputClasses} />
                                     </div>
                                 </div>
 
                                 <div className="grid md:grid-cols-2 gap-6">
                                     <div>
                                         <label className={labelClasses}>기존 프로젝트 진행 이메일 *</label>
-                                        <input type="email" required placeholder="기존 프로젝트 진행 이메일 *" className={inputClasses} />
+                                        <input name="existingEmail" type="email" required placeholder="기존 프로젝트 진행 이메일 *" className={inputClasses} />
                                     </div>
                                     <div>
                                         <label className={labelClasses}>웹사이트 URL *</label>
-                                        <input type="url" required placeholder="https://yourwebsite.com" className={inputClasses} />
+                                        <input name="url" type="url" required placeholder="https://yourwebsite.com" className={inputClasses} />
                                     </div>
                                 </div>
 
                                 <div>
                                     <label className={labelClasses}>유지보수 및 고도화 요청 사항 *</label>
                                     <textarea
+                                        name="maintenanceDetails"
                                         required
                                         placeholder="레이아웃 변경, 기능 추가, 플러그인 충돌 등 수정이 필요한 내용을 상세히 적어주세요."
                                         className={cn(inputClasses, "h-40 resize-none")}

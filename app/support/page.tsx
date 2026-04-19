@@ -1,5 +1,6 @@
-import { supabase } from "@/lib/supabase";
 import Accordion from "@/components/ui/Accordion";
+import { notices } from "@/src/data/notice";
+import Link from "next/link";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -10,33 +11,7 @@ export const metadata: Metadata = {
   },
 };
 
-// Server Component for fetching Supabase data directly
-export default async function SupportPage() {
-    // Fetch Notices from Supabase
-    let notices: any[] = [];
-
-    // Try calling Supabase, safely fallback if not configured yet
-    try {
-        const { data, error } = await supabase
-            .from("notices")
-            .select("*")
-            .order("created_at", { ascending: false });
-
-        if (!error && data) {
-            notices = data;
-        }
-    } catch (err) {
-        console.error("Supabase fetch error:", err);
-    }
-
-    // Format notices for Accordion
-    const noticeItems = notices.map(notice => ({
-        id: notice.id,
-        title: notice.title,
-        content: notice.content,
-        date: notice.created_at,
-    }));
-
+export default function SupportPage() {
     const FAQS = [
         {
             id: "faq-1",
@@ -86,8 +61,12 @@ export default async function SupportPage() {
     ];
 
     return (
-        <div className="bg-background min-h-screen pt-32 pb-24">
-            <div className="container mx-auto px-6 max-w-4xl">
+        <div className="bg-background min-h-screen pt-32 pb-24 relative overflow-hidden">
+            {/* Background glow */}
+            <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-accent/20 rounded-full blur-[120px] -translate-y-1/2 translate-x-1/2 pointer-events-none" />
+            <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-purple-500/10 rounded-full blur-[120px] translate-y-1/2 -translate-x-1/2 pointer-events-none" />
+
+            <div className="container mx-auto px-6 max-w-4xl relative z-10">
                 <div className="text-center mb-16">
                     <h1 className="text-4xl md:text-5xl font-bold tracking-tighter mb-6 text-foreground">
                         고객 지원 센터
@@ -100,11 +79,29 @@ export default async function SupportPage() {
                 <div className="mb-20">
                     <div className="flex items-center justify-between mb-8">
                         <h2 className="text-2xl font-bold text-foreground">공지사항</h2>
-                        {notices.length === 0 && (
-                            <span className="text-xs px-2 py-1 bg-foreground/10 text-foreground/60 rounded">DB 연동 전 대기상태</span>
-                        )}
                     </div>
-                    <Accordion items={noticeItems} />
+                    {notices.length === 0 ? (
+                        <div className="text-center py-10 bg-foreground/5 rounded-2xl text-foreground/50 text-sm">
+                            등록된 공지사항이 없습니다.
+                        </div>
+                    ) : (
+                        <div className="flex flex-col gap-3">
+                            {notices.map((notice) => (
+                                <Link 
+                                    key={notice.id} 
+                                    href={`/notice/${notice.id}`}
+                                    className="group flex flex-col md:flex-row md:items-center justify-between p-6 bg-foreground/5 rounded-2xl border border-foreground/5 hover:border-accent/50 hover:bg-foreground/10 transition-all duration-300"
+                                >
+                                    <h3 className="text-lg font-bold text-foreground group-hover:text-accent transition-colors mb-2 md:mb-0">
+                                        {notice.title}
+                                    </h3>
+                                    <span className="text-sm font-medium text-foreground/50 whitespace-nowrap">
+                                        {notice.date}
+                                    </span>
+                                </Link>
+                            ))}
+                        </div>
+                    )}
                 </div>
 
                 <div>

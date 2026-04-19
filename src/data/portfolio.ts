@@ -98,6 +98,11 @@ export const PORTFOLIO_DATA: PortfolioItem[] = [
             "/portfolio/vibe/aqua/aqua4.png",
             "/portfolio/vibe/aqua/aqua5.png",
             "/portfolio/vibe/aqua/aqua mob.png"
+        ],
+        stats: [
+            { label: "방문자 증가율", value: "450", suffix: "%" },
+            { label: "상담 문의율", value: "315", suffix: "%" },
+            { label: "브랜드 인지도 만족도", value: "99.8", suffix: "%" }
         ]
     }
 ];
