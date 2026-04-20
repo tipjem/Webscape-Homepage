@@ -7,7 +7,7 @@ import { ArrowUpRight } from "lucide-react";
 
 import { PORTFOLIO_DATA } from "@/src/data/portfolio";
 
-const PROJECTS = PORTFOLIO_DATA.slice(0, 3);
+const PROJECTS = [...PORTFOLIO_DATA].reverse().slice(0, 3);
 
 export default function PortfolioHighlight() {
     return (
@@ -41,9 +41,7 @@ export default function PortfolioHighlight() {
                             className="group bg-white/5 ring-1 ring-white/10 p-1.5 rounded-[2rem] flex flex-col transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-2 hover:shadow-2xl hover:shadow-accent/20"
                         >
                             <Link
-                                href={project.url || "/portfolio"}
-                                target="_blank"
-                                rel="noopener noreferrer"
+                                href={`/portfolio/${project.id}`}
                                 className="flex flex-col h-full w-full outline-none shadow-[inset_0_1px_1px_rgba(255,255,255,0.15)] rounded-[calc(2rem-0.375rem)] overflow-hidden bg-white/5 relative"
                             >
                                 {/* Thumbnail Image Area */}

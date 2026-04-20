@@ -18,71 +18,6 @@ export interface PortfolioItem {
 
 export const PORTFOLIO_DATA: PortfolioItem[] = [
     {
-        id: 1,
-        title: "오리온 인테리어",
-        description: "프리미엄 인테리어 업체를 위한 감각적인 애니메이션과 포트폴리오 쇼케이스에 초점을 맞춘 웹사이트입니다.",
-        category: "바이브코딩",
-        type: "기업용 랜딩페이지",
-        url: "https://example.com/orion",
-        // 4장의 예시 이미지 배열을 추가합니다. (나중에 public/portfolio 폴더에 아래 이름으로 넣어주세요)
-        images: [
-            "/portfolio/ex1.png",
-            "/portfolio/ex2.png",
-            "/portfolio/ex3.png",
-            "/portfolio/ex4.png"
-        ],
-        // [예시] 개별 포트폴리오에 맞춘 자체 수치 및 기능 설명이 필요하다면 이렇게 직접 덮어씁니다.
-        stats: [
-            { label: "시공 상담 건수", value: "320", suffix: "%↑" },
-            { label: "평균 체류 시간", value: "4.5", suffix: "분" },
-            { label: "키워드 유입량", value: "1,500", suffix: "명" },
-        ],
-        features: [
-            { id: "01", title: "압도적인 시각화 쇼케이스", description: "복잡한 설명보다 한 장의 사진과 고급스러운 애니메이션으로 시공 신뢰도를 높였습니다." },
-            { id: "02", title: "간편한 원클릭 견적 폼", description: "고객이 평수와 원하는 예산을 직관적으로 선택하면 카카오톡으로 실시간 알림이 가도록 연동했습니다." }
-        ]
-    },
-    {
-        id: 2,
-        title: "넥스트 리테일",
-        description: "전환율을 극대화하기 위해 기획된 모던한 UI의 우커머스 연동 프리미엄 쇼핑몰입니다.",
-        category: "워드프레스 브릭스",
-        type: "쇼핑몰",
-        url: "https://example.com/retail"
-    },
-    {
-        id: 3,
-        title: "스튜디오 픽셀",
-        description: "디자이너의 작업물을 돋보이게 하는 인터랙티브 갤러리 및 프로젝트 상세 뷰를 제공합니다.",
-        category: "바이브코딩",
-        type: "디자인 포트폴리오",
-        url: "https://example.com/pixel"
-    },
-    {
-        id: 4,
-        title: "로컬 에코",
-        description: "친환경 브랜드의 철학과 제품 라인업을 부드러운 스크롤 스토리텔링으로 풀어낸 사이트입니다.",
-        category: "바이브코딩",
-        type: "브랜드 사이트",
-        url: "https://example.com/eco"
-    },
-    {
-        id: 5,
-        title: "메디컬 플러스",
-        description: "전문성과 신뢰감을 주는 레이아웃과 손쉬운 예약 폼을 갖춘 병원/클리닉 전용 웹사이트입니다.",
-        category: "워드프레스 브릭스",
-        type: "병원 홈페이지",
-        url: "https://example.com/medical"
-    },
-    {
-        id: 6,
-        title: "핀테크 이노베이션",
-        description: "스타트업의 투자 유치를 위한 하이테크 느낌의 3D 오브젝트 및 패럴랙스를 접목한 웹입니다.",
-        category: "워드프레스 브릭스",
-        type: "기업용 사이트",
-        url: "https://example.com/fintech"
-    },
-    {
         id: 7,
         title: "아쿠아",
         description: "전환율을 극대화하는 직관적인 디자인과 프리미엄 웹사이트입니다.",
@@ -91,18 +26,87 @@ export const PORTFOLIO_DATA: PortfolioItem[] = [
         url: "https://homepage-seven-gold.vercel.app/",
         image: "/portfolio/vibe/aqua/aqua pc main.png",
         images: [
+            "/portfolio/vibe/aqua/aqua pc main.png",
             "/portfolio/vibe/aqua/aqua pc contact.png",
-            "/portfolio/vibe/aqua/aqua1.png",
             "/portfolio/vibe/aqua/aqua2.png",
-            "/portfolio/vibe/aqua/aqua3.png",
-            "/portfolio/vibe/aqua/aqua4.png",
-            "/portfolio/vibe/aqua/aqua5.png",
             "/portfolio/vibe/aqua/aqua mob.png"
         ],
         stats: [
             { label: "방문자 증가율", value: "450", suffix: "%" },
             { label: "상담 문의율", value: "315", suffix: "%" },
             { label: "브랜드 인지도 만족도", value: "99.8", suffix: "%" }
+        ]
+    },
+    {
+        id: 8,
+        title: "비즈니스 기업",
+        description: "신뢰와 전문성을 상징하는 모던한 레이아웃으로 기획된 기업 전용 프리미엄 웹사이트입니다.",
+        category: "바이브코딩",
+        type: "기업용 사이트",
+        url: "https://vibe-agency-hazel.vercel.app/",
+        image: "/portfolio/vibe/기업/main.png",
+        images: [
+            "/portfolio/vibe/기업/main.png",
+            "/portfolio/vibe/기업/service.png",
+            "/portfolio/vibe/기업/section.png",
+            "/portfolio/vibe/기업/mobile.png"
+        ],
+        stats: [
+            { label: "기업 신뢰도", value: "98.5", suffix: "%" },
+            { label: "페이지 전이율", value: "240", suffix: "%↑" },
+            { label: "파트너십 문의", value: "150", suffix: "%↑" }
+        ],
+        features: [
+            { id: "01", title: "비즈니스 아이덴티티 특화", description: "기업의 브랜드 컬러와 미션을 가장 돋보이게 하는 정교한 그리드 시스템을 적용했습니다." },
+            { id: "02", title: "정보 전달 중심의 UI 구성", description: "방대한 서비스 내용을 사용자가 한눈에 파악할 수 있도록 마이크로 애니메이션과 인포그래픽을 활용했습니다." }
+        ]
+    },
+    {
+        id: 9,
+        title: "웰니스 요가 스튜디오",
+        description: "마음의 평온과 신체의 안정을 추구하는 프리미엄 요가&필라테스 브랜드 웹사이트입니다. 고해상도 이미지와 감성적인 톤앤매너로 브랜드의 신뢰도를 높였습니다.",
+        category: "바이브코딩",
+        type: "브랜드 사이트",
+        url: "https://wellness-ruby-eta.vercel.app/",
+        image: "/portfolio/vibe/요가/main.png",
+        images: [
+            "/portfolio/vibe/요가/main.png",
+            "/portfolio/vibe/요가/project.png",
+            "/portfolio/vibe/요가/review.png",
+            "/portfolio/vibe/요가/mobile.png"
+        ],
+        stats: [
+            { label: "신규 회원 등록", value: "380", suffix: "%↑" },
+            { label: "수업 예약 전환율", value: "215", suffix: "%↑" },
+            { label: "사용자 체류 시간", value: "3.8", suffix: "분" }
+        ],
+        features: [
+            { id: "01", title: "감성적인 비주얼 스토리텔링", description: "요가 스튜디오 특유의 평온한 분위기를 담아내기 위해 고품질 이미지와 여백의 미를 강조한 레이아웃을 사용했습니다." },
+            { id: "02", title: "신뢰도를 높이는 리뷰 시스템", description: "풍부한 수강 만족도와 후기를 시각적으로 매력적으로 구성하여 신규 회원의 심리적 장벽을 낮췄습니다." }
+        ]
+    },
+    {
+        id: 10,
+        title: "인테리어 디자인 스튜디오",
+        description: "공간의 미학과 실용성을 동시에 추구하는 인테리어 전문 기업의 공식 웹사이트입니다. 고해상도 시공 사진과 직관적인 견적 문의 시스템으로 타겟 고객의 전환율을 높였습니다.",
+        category: "바이브코딩",
+        type: "기업용 사이트",
+        url: "https://studio-gamma-nine.vercel.app/",
+        image: "/portfolio/vibe/인테리어/main.png",
+        images: [
+            "/portfolio/vibe/인테리어/main.png",
+            "/portfolio/vibe/인테리어/about.png",
+            "/portfolio/vibe/인테리어/project.png",
+            "/portfolio/vibe/인테리어/mobile.png"
+        ],
+        stats: [
+            { label: "시공 상담 문의", value: "420", suffix: "%↑" },
+            { label: "포트폴리오 조회수", value: "1,850", suffix: "회" },
+            { label: "평균 페이지 체류", value: "4.2", suffix: "분" }
+        ],
+        features: [
+            { id: "01", title: "압도적인 시공 갤러리", description: "공간의 디테일을 가장 잘 보여줄 수 있는 하이엔드 이미지 그리드 시스템을 적용하여 시각적 몰입감을 극대화했습니다." },
+            { id: "02", title: "스마트 견적 요청 시스템", description: "방문자가 원하는 시공 범위와 예산을 간편하게 선택하고 바로 상담 신청을 할 수 있는 사용자 중심 폼을 구현했습니다." }
         ]
     }
 ];

@@ -4,11 +4,11 @@ import Link from "next/link";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "고객 지원",
-  description: "새로운 소식과 궁금하신 점을 빠르게 확인하세요. 웹스케이프 고객 지원 센터입니다.",
-  alternates: {
-    canonical: "/support",
-  },
+    title: "고객 지원",
+    description: "새로운 소식과 궁금하신 점을 빠르게 확인하세요. 웹스케이프 고객 지원 센터입니다.",
+    alternates: {
+        canonical: "/support",
+    },
 };
 
 export default function SupportPage() {
@@ -87,8 +87,8 @@ export default function SupportPage() {
                     ) : (
                         <div className="flex flex-col gap-3">
                             {notices.map((notice) => (
-                                <Link 
-                                    key={notice.id} 
+                                <Link
+                                    key={notice.id}
                                     href={`/notice/${notice.id}`}
                                     className="group flex flex-col md:flex-row md:items-center justify-between p-6 bg-foreground/5 rounded-2xl border border-foreground/5 hover:border-accent/50 hover:bg-foreground/10 transition-all duration-300"
                                 >
