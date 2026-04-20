@@ -23,7 +23,7 @@ export const metadata: Metadata = {
     type: "website",
     locale: "ko_KR",
     siteName: "웹스케이프",
-    images: [{ url: "/og-image.jpg", width: 1200, height: 630, alt: "웹스케이프 (Webscape)" }],
+    images: [{ url: "/domain-main.png", width: 1200, height: 630, alt: "웹스케이프 (Webscape)" }],
   },
   twitter: {
     card: "summary_large_image",
