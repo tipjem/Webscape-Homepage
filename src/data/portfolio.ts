@@ -62,6 +62,30 @@ export const PORTFOLIO_DATA: PortfolioItem[] = [
         ]
     },
     {
+        id: 11,
+        title: "인테리어 디자인 브릭스",
+        description: "워드프레스 브릭스 빌더를 활용하여 구축된 하이엔드 인테리어 포트폴리오 사이트입니다. 픽셀 단위의 정교한 디자인과 강력한 관리 기능을 동시에 제공합니다.",
+        category: "워드프레스 브릭스",
+        type: "기업용 사이트",
+        url: "https://mwpdemo61444.mycafe24.com/",
+        image: "/portfolio/bricks/인테리어/main.png",
+        images: [
+            "/portfolio/bricks/인테리어/main.png",
+            "/portfolio/bricks/인테리어/portflio.png",
+            "/portfolio/bricks/인테리어/contacti.png",
+            "/portfolio/bricks/인테리어/mobile.png"
+        ],
+        stats: [
+            { label: "시공 문의 전환", value: "340", suffix: "%↑" },
+            { label: "디자인 만족도", value: "99.2", suffix: "%" },
+            { label: "관리 편의성", value: "100", suffix: "%" }
+        ],
+        features: [
+            { id: "01", title: "브릭스 빌더 기반 커스텀 디자인", description: "기존 테마의 한계를 뛰어넘어, 브랜드의 감성을 픽셀 하나까지 정교하게 표현한 커스텀 레이아웃을 제공합니다." },
+            { id: "02", title: "직관적인 콘텐츠 관리", description: "워드프레스의 강력한 관리 기능과 브릭스의 직관적인 에디터를 결합하여, 누구나 손쉽게 포트폴리오를 업데이트할 수 있습니다." }
+        ]
+    },
+    {
         id: 9,
         title: "웰니스 요가 스튜디오",
         description: "마음의 평온과 신체의 안정을 추구하는 프리미엄 요가&필라테스 브랜드 웹사이트입니다. 고해상도 이미지와 감성적인 톤앤매너로 브랜드의 신뢰도를 높였습니다.",
@@ -114,7 +138,7 @@ export const PORTFOLIO_DATA: PortfolioItem[] = [
 export function getPortfolioDetails(id: number | string) {
     const numId = typeof id === 'string' ? parseInt(id, 10) : id;
     const project = PORTFOLIO_DATA.find(p => p.id === numId);
-    
+
     if (!project) return null;
 
     // 상세 페이지를 구성하기 위한 데이터 로딩
