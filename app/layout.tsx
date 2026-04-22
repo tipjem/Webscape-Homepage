@@ -5,6 +5,7 @@ import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import KakaoContactButton from "@/components/ui/KakaoContactButton";
 import { OrganizationJsonLd } from "@/components/seo/JsonLd";
+import { GoogleAnalytics } from "@next/third-parties/google";
 // trigger route watch
 const inter = Inter({
   subsets: ["latin"],
@@ -49,6 +50,7 @@ export default function RootLayout({
         </main>
         <Footer />
         <KakaoContactButton />
+        {process.env.NEXT_PUBLIC_GA_ID && <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID} />}
       </body>
     </html>
   );
