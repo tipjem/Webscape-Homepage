@@ -50,7 +50,9 @@ export default function RootLayout({
         </main>
         <Footer />
         <KakaoContactButton />
-        {process.env.NEXT_PUBLIC_GA_ID && <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID} />}
+        {(process.env.NEXT_PUBLIC_GA_ID || process.env.ANALYTICS_API_KEY) && (
+          <GoogleAnalytics gaId={(process.env.NEXT_PUBLIC_GA_ID || process.env.ANALYTICS_API_KEY) as string} />
+        )}
       </body>
     </html>
   );
