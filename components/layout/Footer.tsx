@@ -25,7 +25,7 @@ export default function Footer() {
                         <div>
                             <h4 className="font-semibold text-white mb-4">Support & Contact</h4>
                             <ul className="space-y-3 text-sm text-[#EDEDED]/60">
-                                <li>webscape@naver.com</li>
+                                <li>webscape.kr@gmail.com</li>
                                 <li>010-2633-9537</li>
                             </ul>
                         </div>

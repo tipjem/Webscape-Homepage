@@ -44,7 +44,7 @@ export async function POST(request: Request) {
 
     const { data: resendData, error } = await resend.emails.send({
       from: 'Webscape Contact <onboarding@resend.dev>',
-      to: ['tipjem@gmail.com'],
+      to: ['webscape.kr@gmail.com'],
       subject: subject,
       html: htmlContent,
       replyTo: email || existingEmail,
