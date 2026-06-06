@@ -8,10 +8,10 @@ import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: '웹스케이프 | 문의가 쏟아지는 매출용 홈페이지',
-  description: '비싼 홈페이지 말고, 3일 만에 완성되는 내 사업장 영업사원. 지역 사업체를 위한 관리형 구독(WAAS) 홈페이지 제작 에이전시 웹스케이프입니다.',
+  description: '비싼 홈페이지 말고, 빠르게 완성되는 내 사업장 영업사원. 지역 사업체를 위한 지속적인 관리(WAAS) 홈페이지 제작 에이전시 웹스케이프입니다.',
   openGraph: {
     title: '웹스케이프 | 문의가 쏟아지는 매출용 홈페이지',
-    description: '3일 완성, 전환율 중심, 무제한 관리. 웹스케이프와 함께 매출을 극대화하세요.',
+    description: '빠른 완성, 전환율 중심, 무제한 관리. 웹스케이프와 함께 매출을 극대화하세요.',
     type: 'website',
   },
   alternates: {

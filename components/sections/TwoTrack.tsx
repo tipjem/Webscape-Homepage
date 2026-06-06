@@ -84,9 +84,9 @@ export default function TwoTrack() {
                                 빠르고 직관적인 검증된 템플릿. 프리미엄 빌더를 활용하여 합리적인 비용으로 완성도 높은 웹을 제공합니다.
                             </p>
                             <ul className="space-y-3 mb-10 text-sm md:text-base text-foreground/80 flex-1">
-                                <li className="flex items-center"><span className="w-1.5 h-1.5 rounded-full bg-purple-500 mr-3"></span> 영업일 3일 내 프로젝트 오픈</li>
+                                <li className="flex items-center"><span className="w-1.5 h-1.5 rounded-full bg-purple-500 mr-3"></span> 빠른 속도의 프로젝트 오픈</li>
                                 <li className="flex items-center"><span className="w-1.5 h-1.5 rounded-full bg-purple-500 mr-3"></span> 검증된 프리미엄 템플릿 제공</li>
-                                <li className="flex items-center"><span className="w-1.5 h-1.5 rounded-full bg-purple-500 mr-3"></span> 손쉬운 유지보수 및 무제한 관리</li>
+                                <li className="flex items-center"><span className="w-1.5 h-1.5 rounded-full bg-purple-500 mr-3"></span> 손쉬운 유지보수 및 지속적인 관리</li>
                             </ul>
                             <Link href="/services/wordpress" className="inline-flex items-center mt-auto w-fit px-6 py-3 rounded-full bg-purple-500/10 text-purple-500 font-semibold transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] hover:bg-purple-500 hover:text-white group/link">
                                 자세히 보기

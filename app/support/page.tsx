@@ -2,6 +2,7 @@ import Accordion from "@/components/ui/Accordion";
 import { notices } from "@/src/data/notice";
 import Link from "next/link";
 import { Metadata } from "next";
+import { FAQJsonLd } from "@/components/seo/JsonLd";
 
 export const metadata: Metadata = {
     title: "고객 지원",
@@ -62,6 +63,7 @@ export default function SupportPage() {
 
     return (
         <div className="bg-background min-h-screen pt-32 pb-24 relative overflow-hidden">
+            <FAQJsonLd faqs={FAQS.map((faq) => ({ question: faq.title, answer: faq.content }))} />
             {/* Background glow */}
             <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-accent/20 rounded-full blur-[120px] -translate-y-1/2 translate-x-1/2 pointer-events-none" />
             <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-purple-500/10 rounded-full blur-[120px] translate-y-1/2 -translate-x-1/2 pointer-events-none" />

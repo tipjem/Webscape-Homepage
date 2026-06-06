@@ -32,7 +32,7 @@ export default function DetailCTA() {
                     transition={{ delay: 0.2 }}
                     className="text-[#EDEDED]/70 text-lg md:text-xl lg:text-2xl mb-16 max-w-3xl mx-auto break-keep leading-relaxed"
                 >
-                    비즈니스에 꼭 필요한 고품질의 홈페이지를 3일 만에 합리적으로 구축해 드립니다. 지금 바로 무료 샘플 제작을 신청하세요.
+                    비즈니스에 꼭 필요한 고품질의 홈페이지를 빠르게 합리적으로 구축해 드립니다. 지금 바로 무료 샘플 제작을 신청하세요.
                 </motion.p>
                 <motion.div
                     initial={{ opacity: 0, y: 40 }}
