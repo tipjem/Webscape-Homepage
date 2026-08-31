@@ -1,9 +1,8 @@
 "use client";
 
 import { motion } from "framer-motion";
-import Link from "next/link";
 import Image from "next/image";
-import { ArrowRight } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import { PortfolioItem } from "@/src/data/portfolio";
 import { cn } from "@/lib/utils";
 
@@ -26,7 +25,12 @@ export function PortfolioCard({ project, idx = 0, className }: PortfolioCardProp
                 className
             )}
         >
-            <Link href={`/portfolio/${project.id}`} className="flex flex-col h-full">
+            <a
+                href={project.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex flex-col h-full"
+            >
                 <div className="relative w-full h-64 bg-foreground/5 overflow-hidden">
                     {project.image ? (
                         <Image
@@ -57,10 +61,10 @@ export function PortfolioCard({ project, idx = 0, className }: PortfolioCardProp
                     </p>
 
                     <div className="mt-8 pt-8 border-t border-foreground/5 flex items-center gap-2 text-accent font-bold group-hover:underline">
-                        <span>상세히 보기</span> <ArrowRight size={16} />
+                        <span>사이트 바로가기</span> <ArrowUpRight size={16} />
                     </div>
                 </div>
-            </Link>
+            </a>
         </motion.div>
     );
 }

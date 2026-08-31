@@ -132,6 +132,35 @@ export const PORTFOLIO_DATA: PortfolioItem[] = [
             { id: "01", title: "압도적인 시공 갤러리", description: "공간의 디테일을 가장 잘 보여줄 수 있는 하이엔드 이미지 그리드 시스템을 적용하여 시각적 몰입감을 극대화했습니다." },
             { id: "02", title: "스마트 견적 요청 시스템", description: "방문자가 원하는 시공 범위와 예산을 간편하게 선택하고 바로 상담 신청을 할 수 있는 사용자 중심 폼을 구현했습니다." }
         ]
+    },
+    {
+        id: 12,
+        title: "인덱스 나인 (INDEX NINE)",
+        description: "공간과 브랜드의 가치를 미학적 디자인과 정밀한 시공 구조로 증명하는 프리미엄 디자인 스튜디오 포트폴리오 웹사이트입니다.",
+        category: "바이브코딩",
+        type: "브랜드 사이트",
+        url: "https://index-nine.pages.dev/",
+        image: "/portfolio/vibe/index-nine/main.png",
+        images: [
+            "/portfolio/vibe/index-nine/main.png",
+            "/portfolio/vibe/index-nine/moblie main.png"
+        ],
+        stats: [
+            { label: "완공 프로젝트", value: "120", suffix: "+" },
+            { label: "고객 만족도", value: "98.4", suffix: "%" },
+            { label: "공기 준수율", value: "100", suffix: "%" }
+        ],
+        features: [
+            { id: "01", title: "미학적 레이아웃 & 비주얼 스토리텔링", description: "빛과 비움을 주제로 건축적 미학을 극대화한 인터랙티브 모던 포트폴리오 디자인을 적용했습니다." },
+            { id: "02", title: "인공지능 & 초고속 모듈화 퍼블리싱", description: "반응형 웹 표준을 준수하여 이탈률 최소화와 100% 모바일 UI 최적화를 달성했습니다." },
+            { id: "03", title: "직관적 시공 사례 쇼케이스", description: "주거, 상업, 기업 오피스 등 영역별 대표 사례 지표와 비포/애프터 비주얼을 효과적으로 배치했습니다." }
+        ],
+        processSteps: [
+            { step: "01", title: "상담 & 디스커버리", desc: "공간 상황과 프로젝트 목적, 예산 정밀 분석" },
+            { step: "02", title: "현장 진단 & 3D 기획", desc: "3D 도면과 정밀 구조 진단 기반 기획안 제안" },
+            { step: "03", title: "정밀 시공 & 감리", desc: "일정과 마감 품질을 준수하는 전담 소장 시공" },
+            { step: "04", title: "결과 검수 & 사후 케어", desc: "2년 무상 하자보수 및 1:1 전담 관리 지원" }
+        ]
     }
 ];
 

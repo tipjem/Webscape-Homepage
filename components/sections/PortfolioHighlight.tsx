@@ -40,8 +40,10 @@ export default function PortfolioHighlight() {
                             transition={{ delay: i * 0.1, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
                             className="group bg-white/5 ring-1 ring-white/10 p-1.5 rounded-[2rem] flex flex-col transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-2 hover:shadow-2xl hover:shadow-accent/20"
                         >
-                            <Link
-                                href={`/portfolio/${project.id}`}
+                            <a
+                                href={project.url}
+                                target="_blank"
+                                rel="noopener noreferrer"
                                 className="flex flex-col h-full w-full outline-none shadow-[inset_0_1px_1px_rgba(255,255,255,0.15)] rounded-[calc(2rem-0.375rem)] overflow-hidden bg-white/5 relative"
                             >
                                 {/* Thumbnail Image Area */}
@@ -70,8 +72,9 @@ export default function PortfolioHighlight() {
                                             </span>
                                         )}
                                     </div>
-                                    <h3 className="text-xl font-bold text-white mb-1 group-hover:text-accent transition-colors duration-300 break-keep">
-                                        {project.title}
+                                    <h3 className="text-xl font-bold text-white mb-1 group-hover:text-accent transition-colors duration-300 break-keep flex items-center justify-between">
+                                        <span>{project.title}</span>
+                                        <ArrowUpRight className="w-5 h-5 text-accent opacity-0 group-hover:opacity-100 transition-opacity" />
                                     </h3>
                                     {project.description && (
                                         <p className="text-white/70 text-sm line-clamp-2 mt-1">
@@ -79,7 +82,7 @@ export default function PortfolioHighlight() {
                                         </p>
                                     )}
                                 </div>
-                            </Link>
+                            </a>
                         </motion.div>
                     ))}
                 </div>
