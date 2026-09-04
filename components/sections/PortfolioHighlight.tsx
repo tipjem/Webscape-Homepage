@@ -7,7 +7,7 @@ import { ArrowUpRight } from "lucide-react";
 
 import { PORTFOLIO_DATA } from "@/src/data/portfolio";
 
-const PROJECTS = [...PORTFOLIO_DATA].reverse().slice(0, 3);
+const PROJECTS = [...PORTFOLIO_DATA].reverse().slice(0, 4);
 
 export default function PortfolioHighlight() {
     return (
@@ -30,7 +30,7 @@ export default function PortfolioHighlight() {
                     </Link>
                 </div>
 
-                <div className="grid md:grid-cols-3 gap-6">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
                     {PROJECTS.map((project, i) => (
                         <motion.div
                             key={project.id || i}
@@ -38,50 +38,30 @@ export default function PortfolioHighlight() {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true, margin: "-50px" }}
                             transition={{ delay: i * 0.1, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-                            className="group bg-white/5 ring-1 ring-white/10 p-1.5 rounded-[2rem] flex flex-col transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-2 hover:shadow-2xl hover:shadow-accent/20"
                         >
                             <a
                                 href={project.url}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="flex flex-col h-full w-full outline-none shadow-[inset_0_1px_1px_rgba(255,255,255,0.15)] rounded-[calc(2rem-0.375rem)] overflow-hidden bg-white/5 relative"
+                                className="group block w-full outline-none"
                             >
                                 {/* Thumbnail Image Area */}
-                                <div className="relative w-full h-[300px] md:h-[250px] bg-white/5 overflow-hidden">
+                                <div className="relative w-full aspect-[16/10] bg-white/5 rounded-2xl overflow-hidden mb-2.5 shadow-sm border border-white/10">
                                     {project.image && (
                                         <Image
                                             src={project.image}
                                             alt={project.title}
                                             fill
-                                            className="object-cover object-top w-full h-full transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-105"
-                                            sizes="(max-width: 768px) 100vw, 33vw"
+                                            className="object-cover object-top w-full h-full transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-105"
+                                            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
                                         />
                                     )}
-                                    <div className="absolute inset-0 bg-transparent group-hover:bg-white/5 transition-colors duration-500 z-10 pointer-events-none"></div>
                                 </div>
 
-                                {/* Content Area */}
-                                <div className="p-6 flex flex-col flex-1 relative z-20">
-                                    <div className="flex items-center gap-2 mb-3">
-                                        <span className="px-3 py-1 bg-white/10 text-white text-xs font-semibold rounded-full shadow-sm ring-1 ring-white/10">
-                                            {project.category}
-                                        </span>
-                                        {project.type && (
-                                            <span className="px-3 py-1 text-white/60 text-xs font-semibold">
-                                                {project.type}
-                                            </span>
-                                        )}
-                                    </div>
-                                    <h3 className="text-xl font-bold text-white mb-1 group-hover:text-accent transition-colors duration-300 break-keep flex items-center justify-between">
-                                        <span>{project.title}</span>
-                                        <ArrowUpRight className="w-5 h-5 text-accent opacity-0 group-hover:opacity-100 transition-opacity" />
-                                    </h3>
-                                    {project.description && (
-                                        <p className="text-white/70 text-sm line-clamp-2 mt-1">
-                                            {project.description}
-                                        </p>
-                                    )}
-                                </div>
+                                {/* Title Area */}
+                                <h3 className="text-base md:text-lg font-bold text-white tracking-tight group-hover:text-accent transition-colors duration-300">
+                                    {project.title}
+                                </h3>
                             </a>
                         </motion.div>
                     ))}

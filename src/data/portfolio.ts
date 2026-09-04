@@ -161,6 +161,27 @@ export const PORTFOLIO_DATA: PortfolioItem[] = [
             { step: "03", title: "정밀 시공 & 감리", desc: "일정과 마감 품질을 준수하는 전담 소장 시공" },
             { step: "04", title: "결과 검수 & 사후 케어", desc: "2년 무상 하자보수 및 1:1 전담 관리 지원" }
         ]
+    },
+    {
+        id: 13,
+        title: "클린픽 (Clean Pic)",
+        description: "청소 및 전문 케어 서비스 브랜드를 위한 초고속 전환형 포트폴리오 웹사이트입니다. 시각적 서비스 안내와 직관적인 견적 문의 시스템을 갖췄습니다.",
+        category: "바이브코딩",
+        type: "청소/케어 서비스",
+        url: "https://cleanpic.pages.dev/",
+        image: "/portfolio/vibe/cleanpic/main.png",
+        images: [
+            "/portfolio/vibe/cleanpic/main.png"
+        ],
+        stats: [
+            { label: "상담 문의 전환율", value: "320", suffix: "%↑" },
+            { label: "고객 만족도", value: "99.4", suffix: "%" },
+            { label: "모바일 체류시간", value: "3.5", suffix: "분" }
+        ],
+        features: [
+            { id: "01", title: "신뢰감 중심의 서비스 쇼케이스", description: "청소 및 케어 서비스 공정을 시각적으로 강조하여 방문자의 신뢰도를 극대화했습니다." },
+            { id: "02", title: "원클릭 견적 문의 시스템", description: "전화 상담 및 견적 신청 UI를 상시 배치하여 상담 신청 이탈을 방지합니다." }
+        ]
     }
 ];
 
