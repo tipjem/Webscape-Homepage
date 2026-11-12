@@ -62,7 +62,7 @@ const pretendard = localFont({
 import dynamic from 'next/dynamic';
 
 const HeavyComponent = dynamic(() => import('./HeavyComponent'), {
-  loading: () => <div className="skeleton" />,
+  loading: () => <div className="skeleton min-h-[200px]" />,
   ssr: false,
 });
 ```
@@ -107,7 +107,7 @@ import Script from 'next/script';
 | xl:    | 1280px    | 대형 화면     |
 | 2xl:   | 1440px    | 초대형 화면   |
 
-> 모바일 퍼스트: 기본 → md → lg 순으로 확장
+> 모바일 퍼스트: 기본(360px+) → md → lg 순으로 확장
 
 ---
 
@@ -120,10 +120,16 @@ import Script from 'next/script';
 </div>
 ```
 
-### 반응형 그리드
+### 반응형 비대칭 벤토 그리드 (Anti-Slop)
 ```tsx
-<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
-  {items.map(item => <Card key={item.id} {...item} />)}
+{/* 획일적인 3열 대신 주목도에 따른 비대칭 벤토 그리드 권장 */}
+<div className="grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-6">
+  <div className="md:col-span-8 p-6 rounded-2xl bg-zinc-900 border border-white/10">
+    {/* 대형 핵심 콘텐츠 */}
+  </div>
+  <div className="md:col-span-4 p-6 rounded-2xl bg-zinc-950 border border-white/10">
+    {/* 서브 지표/통계 */}
+  </div>
 </div>
 ```
 
@@ -154,7 +160,7 @@ import Script from 'next/script';
 ## CSS 성능
 ```css
 .animate {
-  transition: transform 0.3s ease, opacity 0.3s ease;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
   will-change: transform;
 }
 ```
@@ -164,25 +170,24 @@ import Script from 'next/script';
 
 ## 번들 사이즈 최적화
 - 불필요한 라이브러리 제거
-- lodash → lodash-es 또는 개별 import
+- lodash → lodash-es 또는 개별 유틸 함수 작성
 - moment → dayjs 추천
-- 클라이언트 컴포넌트 최소화
+- 클라이언트 컴포넌트(`'use client'`) 최소화
 
 ---
 
 ## 체크리스트
 - [ ] LCP 이미지 priority 적용
 - [ ] next/image sizes 설정
-- [ ] next/font 적용
+- [ ] next/font 적용 (Pretendard Variable)
 - [ ] 서버 컴포넌트 우선
 - [ ] dynamic import 적용
 - [ ] loading UI 구현
 - [ ] ISR / 캐싱 전략 적용
 - [ ] 불필요한 JS 제거
-- [ ] 모바일 기준으로 먼저 구현
-- [ ] md / lg / xl 단계별 확인
-- [ ] 터치 영역 44px 이상
-- [ ] spacing 반응형 적용
+- [ ] 모바일 기준으로 먼저 구현 (360px 가로스크롤 제로)
+- [ ] 터치 영역 최소 44px (권장 48px 이상)
+- [ ] spacing 반응형 적용 (최소 py-24)
 - [ ] safe-area 대응
 - [ ] motion-reduce 대응
 - [ ] Lighthouse Performance 90+

@@ -11,9 +11,9 @@ description: Tailwind CSS v4 + Framer Motion 기반 디자인 시스템. 브랜�
 작업 전, 프로젝트 성격에 맞는 비주얼 방향을 결정합니다.
 
 ### A. 분위기 및 질감 (Vibe & Texture)
-1. **Vantablack Luxe:** OLED 블랙(`#050505`), 메쉬 그라디언트 오버레이, `backdrop-blur-2xl`, 화이트 10% 투명도 헤어라인 테두리.
-2. **Warm Editorial:** 웜 크림(`#FDFBF7`), 세이지/에스프레소 포인트, 세리프 영문 제목, 3% 불투명도 노이즈 오버레이(종이 질감).
-3. **Clean Structural:** 실버 그레이 배경, 거대한 볼드 타이포그래피, 초확산 앰비언트 쉐도우(`rgba(0,0,0,0.05)`).
+1. **Burnt Orange & Dark Velvet (기본 브랜드):** Dark Orange Black(`#160B07`), Deep Brown Orange(`#211009`), Warm Ivory(`#F5F1EB`), Burnt Orange Accent(`#FF6B35` / `#D95F20`), 은은한 Warm Glow.
+2. **Vantablack Luxe:** OLED 블랙(`#050505`), 메쉬 그라디언트 오버레이, `backdrop-blur-2xl`, 화이트 10% 투명도 헤어라인 테두리.
+3. **Warm Editorial:** 웜 크림(`#FDFBF7`), 세이지/에스프레소 포인트, 세리프 영문 제목, 3% 불투명도 노이즈 오버레이(종이 질감).
 
 ### B. 레이아웃 프리셋
 1. **Asymmetrical Bento:** 불규칙한 그리드 구조 (`col-span-8` + `col-span-4` 조합).
@@ -168,7 +168,8 @@ import { motion } from 'framer-motion';
 ```
 
 ## 6. 절대 금지 원칙 (Anti-Patterns)
-- **Banned Fonts:** Inter, Noto Sans KR, Roboto, Arial, Open Sans, Helvetica, 맑은 고딕.
+- **Primary Font Standard:** 한글과 영문 모두 `Pretendard Variable`을 최우선 기본 폰트로 사용합니다. (영문 테크니컬 시 `Inter` 또는 `SF Pro` 조화롭게 허용)
+- **Banned Web Default Fonts:** 맑은 고딕, 돋움, 굴림, Arial, Times New Roman 등 시스템 기본 폰트 단독 노출 금지. (적절한 웹폰트 스택 없이 깨져 보이는 현상 방지)
 - **Banned Icons:** 선이 굵거나 투박한 아이콘. (Iconify Solar 세트 권장)
 - **Banned Borders:** 단순한 `1px solid gray`. 탁한 그림자(`shadow-md` 단독).
 - **Banned Motion:** `linear`, 기본 `ease-in-out`. 즉각적인 상태 변화.

@@ -12,20 +12,19 @@ AI가 웹 공간의 데이터를 수집하여 특정 브랜드를 신뢰할 수 
 
 ---
 
-## 2. 초기화 프로세스 (Initialization Workflow) - ⚠️ 필독 시스템 명령
+## 2. 초기화 프로세스 (Initialization Workflow)
 
-본 스킬 파일이 로드되거나 실행되면, AI는 어떠한 전략도 선제시하지 말고 **반드시 아래의 첫 번째 질문만을 수행하며 대기를 해야 합니다.**
-
-### 🚨 최초 실행 시 출력할 질문:
-> **"어떤 회사인가요? 최적화를 진행할 회사의 정보를 알려주세요! (예: 회사명, 제공하는 핵심 서비스/상품, 주요 타겟 고객, 온/오프라인 및 지역 기반 여부 등)"**
-
-사용자가 정보를 입력하면, AI는 아래의 **[3. 프레임워크]**에 해당 회사 정보를 대입하여 최적화된 맞춤형 콘텐츠 기획안과 Next.js 최적화 코드를 단계별로 생성합니다.
+- **PRD 기반 자동 추출 (최우선):**
+  사용자가 `PRD.md`나 회사/브랜드 정보(상호명, 활동 지역, 핵심 서비스, 연락처 등)를 이미 제공한 경우, **추가 질문 없이 즉시 PRD로부터 정보를 자동 파싱하여 [3. 프레임워크] 파이프라인을 실행**합니다.
+- **정보 부재 시에만 확인 질문:**
+  대화 맥락에 최적화 대상 회사/서비스 정보가 전혀 없는 경우에만 아래 질문을 출력하고 입력을 대기합니다:
+  > *"어떤 회사인가요? 최적화를 진행할 회사의 정보를 알려주세요! (예: 회사명, 제공하는 핵심 서비스/상품, 주요 타겟 고객, 온/오프라인 및 지역 기반 여부 등)"*
 
 ---
 
 ## 3. Next.js 기반 홈페이지 AEO/GEO 기술 프레임워크
 
-사용자가 정보를 제공하면 아래 파이프라인에 맞춰 분석을 진행하고, AI 최적화 관점에서의 실행 텍스트 및 스키마 코드를 도출합니다.
+회사 정보가 확인되면 아래 파이프라인에 맞춰 분석을 진행하고, AI 최적화 관점에서의 실행 텍스트 및 스키마 코드를 도출합니다.
 
 ### [1] 웹사이트 (Website) - 브랜드 신분증 및 정보의 원천
 * **AEO 역할:** AI 크롤러가 신뢰할 수 있는 공식적인 정보의 원천(Single Source of Truth).
@@ -35,24 +34,27 @@ AI가 웹 공간의 데이터를 수집하여 특정 브랜드를 신뢰할 수 
   * **구조화된 데이터(JSON-LD):** `Organization` 또는 `LocalBusiness` 마크업 적용.
 
 ```tsx
-// app/layout.tsx (전역 설정 예시 - AI는 사용자 맞춤형 데이터로 변환하여 출력할 것)
+// app/layout.tsx (전역 설정 예시 - PRD 정보 기반으로 동적 생성)
 import type { Metadata } from 'next';
 import { OrganizationJsonLd } from '@/components/JsonLd';
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://example.com'),
+  // PRD 기반 필수 공식: [지역명] + [핵심 서비스] | [상호명]
   title: {
-    default: '[브랜드명] | [핵심 가치]',
-    template: '%s | [브랜드명]', 
+    default: '[지역명] [핵심 서비스] | [상호명]',
+    template: '%s | [상호명]', 
   },
-  description: 'AI가 쉽게 요약할 수 있는 직관적이고 명확한 브랜드/서비스 설명문 (150자 내외)',
-  keywords: ['핵심키워드1', '대화형 롱테일 키워드2'],
+  description: 'AI가 쉽게 요약할 수 있는 직관적이고 명확한 브랜드/서비스 설명문 (80~150자 내외)',
+  keywords: ['핵심서비스', '지역명+서비스', '전문분야'],
   alternates: { canonical: '/' },
   openGraph: {
     type: 'website',
     locale: 'ko_KR',
-    siteName: '[브랜드명]',
-    images: [{ url: '/og-image.jpg', width: 1200, height: 630, alt: '[브랜드명] 메인 이미지' }],
+    siteName: '[상호명]',
+    title: '[지역명] [핵심 서비스] | [상호명]',
+    description: '대표 서비스 및 고객 혜택 요약문',
+    images: [{ url: '/og-image.jpg', width: 1200, height: 630, alt: '[상호명] 대표 썸네일' }],
   },
   robots: { index: true, follow: true },
 };
@@ -74,19 +76,20 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 export function OrganizationJsonLd() {
   const jsonLd = {
     '@context': 'https://schema.org',
-    '@type': 'Organization', // 지역 사업체인 경우 'LocalBusiness'로 변경
-    name: '[브랜드명]',
+    '@type': 'LocalBusiness', // 지역 기반일 경우 LocalBusiness, 일반 기업일 경우 Organization
+    name: '[상호명]',
     url: 'https://example.com',
     logo: 'https://example.com/logo.png',
-    sameAs: [
-      'https://www.youtube.com/channel/example',
-      'https://www.linkedin.com/company/example'
-    ],
-    contactPoint: {
-      '@type': 'ContactPoint',
-      telephone: '+82-2-1234-5678',
-      contactType: 'customer service',
+    telephone: '+82-10-1234-5678',
+    address: {
+      '@type': 'PostalAddress',
+      addressLocality: '서울특별시 강남구',
+      addressCountry: 'KR',
     },
+    sameAs: [
+      'https://blog.naver.com/example',
+      'https://www.instagram.com/example',
+    ],
   };
 
   return (
@@ -124,74 +127,21 @@ export function FAQJsonLd({ faqs }: { faqs: Array<{question: string, answer: str
 }
 ```
 
-```tsx
-// app/blog/[slug]/page.tsx (동적 메타데이터 예시)
-export async function generateMetadata({ params }): Promise<Metadata> {
-  const post = await getPost(params.slug);
-  return {
-    title: post.title,
-    description: post.excerpt, // 두괄식 단답형 요약문
-    alternates: { canonical: `/blog/${params.slug}` },
-    openGraph: { images: [post.thumbnail] },
-  };
-}
-```
-
 ---
 
 ## 4. Next.js 기반 AEO/SEO 기술 체크리스트
 
-* [ ] 루트 `layout.tsx`에 전역 metadata 및 명확한 AI 요약용 description 설정 완료
+* [ ] 루트 `layout.tsx`에 전역 metadata (`[지역명] + [핵심 서비스] | [상호명]`) 및 AI 요약용 description 설정 완료
 * [ ] 사이트 성격에 맞는 `Organization` 또는 `LocalBusiness` JSON-LD 적용 완료
 * [ ] 정보성 콘텐츠에 `FAQPage` 또는 `Article` JSON-LD 마크업 추가 완료
 * [ ] `app/sitemap.ts` 및 `app/robots.ts` 동적/정적 라우트 설정 완료 (크롤링 예산 최적화)
 * [ ] 의미론적 마크업 준수 (페이지당 `<h1>` 1개, 건너뛰기 없는 h1→h2→h3 구조)
-* [ ] 모든 `<Image />` 컴포넌트에 AI 이미지 인식(Vision)을 돕는 구체적인 `alt` 속성 작성 완료
-* [ ] 내부 링크에 의미 있는 앵커 텍스트 사용 ("여기 클릭" 등 지양)
+* [ ] 모든 `<Image />` 컴포넌트에 구체적인 `alt` 속성 작성 완료
+* [ ] 모바일 공유 시 회색 박스 방지를 위한 Open Graph 절대 URL 메타태그 완비
 
 ---
 
-## 5. AI 가동 규칙 (AI Execution Rules)
-
-1. **철저한 범용성 유지:** 사용자가 정보를 제공하기 전까지는 특정 업종에 치우친 예시를 본문에 직접 고정하지 마십시오.
-2. **홈페이지 중심의 스키마 및 SEO 코드 자동 생성:** 사용자가 회사를 입력하면 홈페이지 구축에 필요한 Next.js 메타데이터 구성 및 구조화 데이터(JSON-LD) 코드를 우선적으로 도출하십시오.
-3. **대화형 진행:** 한 번에 모든 것을 쏟아내기보다는, 사용자의 회사 정보를 분석한 뒤 가장 시급한 **1단계(웹사이트 기본 메타데이터 및 스키마 구조)**부터 순차적으로 심도 있게 디벨롭할 것을 권장하며 대화를 이끌어가십시오.
-
----
-
-## 6. [참고사항] 외부 채널 최적화 및 확산 전략
-
-홈페이지 외에 브랜드의 AEO/GEO 효과를 극대화하기 위해 연계할 수 있는 외부 마케팅 채널과 오프페이지(Off-page) 최적화 방안입니다.
-
-### [1] 유튜브 롱폼 (YouTube Long-form) - 정보성 콘텐츠의 Anchor
-* **AEO 역할:** AI가 영상 자막(Subtitle)과 스크립트를 크롤링하여 지식 데이터베이스로 활용.
-* **실행 과제:**
-  * 본질적인 문제 해결형(How-to) 정보성 롱폼 콘텐츠 기획.
-  * 스크립트 초반 30초 이내에 핵심 키워드와 브랜드 정체성을 명확한 음성 텍스트로 노출.
-
-### [2] 외부 블로그 및 SNS (Threads & LinkedIn) - 소셜 신뢰도(E-E-A-T) 확장
-* **AEO 역할:** 최신 트렌드 데이터 수집 및 전문가 집단으로의 권위 인정 유도.
-* **실행 과제:**
-  * 홈페이지 내의 정보성 SEO 콘텐츠를 플랫폼 문법에 맞게 리라이팅하여 외부 블로그 및 SNS에 확산.
-  * **링크드인:** 전문 지식, 인사이트, 비즈니스 성과 중심의 신뢰 구축.
-  * **스레드:** 실시간 소통, 유저 대화 유도, 가벼운 확산 중심.
-
-### [3] PR 언론보도 (Press Release) - 공인된 신뢰성 확보
-* **AEO 역할:** 고품질 언론사 도메인의 백링크(Backlink)와 인용을 신뢰성 가중치 지표로 판단.
-* **실행 과제:** 단순 광고가 아닌 가치 있는 정보, 통계자료, 공익성 성과 중심으로 배포 및 브랜드명 결합.
-
-### [4] 위키류 및 전문 지식 플랫폼 (Wiki & Knowledge Base) - 지식 그래프 편입
-* **AEO 역할:** AI의 핵심 지식 구조(Knowledge Graph) 형성에 직접적인 영향.
-* **실행 과제:** 조건 충족 시 위키백과 등재 추진 또는 전문 지식 아카이브(오픈북 등) 개설. 객관적 사실, 연혁, 서비스 모델 위주 서술.
-
-### [5] 구글 비즈니스 프로필 (GBP) & 네이버 스마트플레이스 (로컬 비즈니스)
-* **AEO 역할:** 구글 맵 및 로컬 AI 추천 엔진의 핵심 소스.
-* **실행 과제:** 리뷰 내에 핵심 서비스 키워드를 자연스럽게 녹이도록 유도하여 로컬 지수 향상.
-
-### [6] 하이퍼로컬 플랫폼 (당근 등)
-* **AEO 역할:** 지역 내 신뢰도 및 실사용자 언급 빈도 축적.
-* **실행 과제:** 당근비즈니스 등 하이퍼로컬 광고 및 게시글을 통해 지역 밀착형 신뢰 증명.
-
-### [7] 커뮤니티 확산 (Off-page Optimization)
-* **AEO 역할:** 레딧, 디시인사이드, 타겟 버티컬 커뮤니티 등 실사용자 경험(Experience)이 누적되는 공간에 브랜드 노출.
-* **실행 과제:** 정보성 답변과 함께 자연스러운 브랜드 언급, 버티컬/인플루언서 블로그 협찬 진행.
+## 5. [참고사항] 외부 채널 최적화 및 확산 전략
+- **유튜브 롱폼 / 쇼츠:** 음성 자막 크롤링을 통한 지식 엔티티 축적
+- **네이버 플레이스 / 구글 비즈니스 프로필(GBP):** 로컬 AI 추천 엔진 핵심 소스
+- **SNS 및 커뮤니티:** 실사용자 경험(E-E-A-T) 확장 및 백링크 형성

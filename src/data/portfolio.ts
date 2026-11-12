@@ -1,4 +1,4 @@
-export type PortfolioCategory = "바이브코딩" | "워드프레스 브릭스";
+export type PortfolioCategory = "맞춤형 제작" | "실속형 제작" | "바이브코딩" | "워드프레스 브릭스";
 
 export interface PortfolioItem {
     id: number;
@@ -9,6 +9,8 @@ export interface PortfolioItem {
     image?: string; // (기존 단일 이미지 호환용)
     images?: string[]; // 다중 이미지 쇼케이스용
     type?: string;
+    badge?: string; // 카드 상단 뱃지 (예: 기업, 인테리어/설비, 원페이지/랜딩페이지)
+    tags?: string[]; // 카드 하단 해시태그 목록
     // 개별 상세 페이지에 맞춤형으로 사용할 경우 아래 항목들을 선택적으로 기입합니다.
     stats?: { label: string; value: string; suffix: string }[];
     features?: { id: string; title: string; description: string }[];
@@ -21,8 +23,10 @@ export const PORTFOLIO_DATA: PortfolioItem[] = [
         id: 7,
         title: "아쿠아",
         description: "전환율을 극대화하는 직관적인 디자인과 프리미엄 웹사이트입니다.",
-        category: "바이브코딩",
+        category: "맞춤형 제작",
         type: "기업용 랜딩페이지",
+        badge: "원페이지/랜딩페이지",
+        tags: ["#아쿠아", "#제품소개", "#신뢰도극대화", "#반응형", "#홈페이지"],
         url: "https://homepage-seven-gold.vercel.app/",
         image: "/portfolio/vibe/aqua/aqua pc main.png",
         images: [
@@ -41,8 +45,10 @@ export const PORTFOLIO_DATA: PortfolioItem[] = [
         id: 8,
         title: "비즈니스 기업",
         description: "신뢰와 전문성을 상징하는 모던한 레이아웃으로 기획된 기업 전용 프리미엄 웹사이트입니다.",
-        category: "바이브코딩",
+        category: "맞춤형 제작",
         type: "기업용 사이트",
+        badge: "기업",
+        tags: ["#비즈니스기업", "#기업홍보", "#브랜드스토리", "#AEO최적화", "#반응형"],
         url: "https://vibe-agency-hazel.vercel.app/",
         image: "/portfolio/vibe/기업/main.png",
         images: [
@@ -63,10 +69,12 @@ export const PORTFOLIO_DATA: PortfolioItem[] = [
     },
     {
         id: 11,
-        title: "인테리어 디자인 브릭스",
-        description: "워드프레스 브릭스 빌더를 활용하여 구축된 하이엔드 인테리어 포트폴리오 사이트입니다. 픽셀 단위의 정교한 디자인과 강력한 관리 기능을 동시에 제공합니다.",
-        category: "워드프레스 브릭스",
+        title: "인테리어 디자인 쇼케이스",
+        description: "하이엔드 감성의 인테리어 포트폴리오 사이트입니다. 픽셀 단위의 정교한 디자인과 누구나 쉬운 직접 관리 기능을 동시에 제공합니다.",
+        category: "실속형 제작",
         type: "기업용 사이트",
+        badge: "인테리어/시공",
+        tags: ["#인테리어홈페이지", "#시공쇼케이스", "#고급포트폴리오", "#직접수정가능", "#반응형"],
         url: "https://mwpdemo61444.mycafe24.com/",
         image: "/portfolio/bricks/인테리어/main.png",
         images: [
@@ -81,16 +89,18 @@ export const PORTFOLIO_DATA: PortfolioItem[] = [
             { label: "관리 편의성", value: "100", suffix: "%" }
         ],
         features: [
-            { id: "01", title: "브릭스 빌더 기반 커스텀 디자인", description: "기존 테마의 한계를 뛰어넘어, 브랜드의 감성을 픽셀 하나까지 정교하게 표현한 커스텀 레이아웃을 제공합니다." },
-            { id: "02", title: "직관적인 콘텐츠 관리", description: "워드프레스의 강력한 관리 기능과 브릭스의 직관적인 에디터를 결합하여, 누구나 손쉽게 포트폴리오를 업데이트할 수 있습니다." }
+            { id: "01", title: "전환 중심의 세련된 디자인", description: "브랜드의 시공 감성을 극대화하여 실제 방문자가 신뢰하고 견적 문의를 남기도록 유도합니다." },
+            { id: "02", title: "직관적인 콘텐츠 직접 관리", description: "코딩 지식 없이도 누구나 손쉽게 새로운 포트폴리오와 공지사항을 직접 업데이트할 수 있습니다." }
         ]
     },
     {
         id: 9,
         title: "웰니스 요가 스튜디오",
         description: "마음의 평온과 신체의 안정을 추구하는 프리미엄 요가&필라테스 브랜드 웹사이트입니다. 고해상도 이미지와 감성적인 톤앤매너로 브랜드의 신뢰도를 높였습니다.",
-        category: "바이브코딩",
+        category: "맞춤형 제작",
         type: "브랜드 사이트",
+        badge: "교육/웰니스",
+        tags: ["#웰니스요가", "#수강신청", "#예약시스템", "#모바일최적화", "#반응형"],
         url: "https://wellness-ruby-eta.vercel.app/",
         image: "/portfolio/vibe/요가/main.png",
         images: [
@@ -113,8 +123,10 @@ export const PORTFOLIO_DATA: PortfolioItem[] = [
         id: 10,
         title: "인테리어 디자인 스튜디오",
         description: "공간의 미학과 실용성을 동시에 추구하는 인테리어 전문 기업의 공식 웹사이트입니다. 고해상도 시공 사진과 직관적인 견적 문의 시스템으로 타겟 고객의 전환율을 높였습니다.",
-        category: "바이브코딩",
+        category: "맞춤형 제작",
         type: "기업용 사이트",
+        badge: "인테리어/설비",
+        tags: ["#인테리어스튜디오", "#시공갤러리", "#견적문의", "#전환율특화", "#반응형"],
         url: "https://studio-gamma-nine.vercel.app/",
         image: "/portfolio/vibe/인테리어/main.png",
         images: [
@@ -137,8 +149,10 @@ export const PORTFOLIO_DATA: PortfolioItem[] = [
         id: 12,
         title: "인덱스 나인 (INDEX NINE)",
         description: "공간과 브랜드의 가치를 미학적 디자인과 정밀한 시공 구조로 증명하는 프리미엄 디자인 스튜디오 포트폴리오 웹사이트입니다.",
-        category: "바이브코딩",
+        category: "맞춤형 제작",
         type: "브랜드 사이트",
+        badge: "브랜드/디자인",
+        tags: ["#인덱스나인", "#건축디자인", "#미학적레이아웃", "#반응형", "#홈페이지"],
         url: "https://index-nine.pages.dev/",
         image: "/portfolio/vibe/index-nine/main.png",
         images: [
@@ -166,8 +180,10 @@ export const PORTFOLIO_DATA: PortfolioItem[] = [
         id: 13,
         title: "클린픽 (Clean Pic)",
         description: "청소 및 전문 케어 서비스 브랜드를 위한 초고속 전환형 포트폴리오 웹사이트입니다. 시각적 서비스 안내와 직관적인 견적 문의 시스템을 갖췄습니다.",
-        category: "바이브코딩",
+        category: "맞춤형 제작",
         type: "청소/케어 서비스",
+        badge: "청소/생활케어",
+        tags: ["#클린픽", "#전문청소케어", "#원클릭견적", "#빠른상담", "#반응형"],
         url: "https://cleanpic.pages.dev/",
         image: "/portfolio/vibe/cleanpic/main.png",
         images: [
@@ -202,7 +218,7 @@ export function getPortfolioDetails(id: number | string) {
         ],
         features: project.features || [
             { id: "01", title: "최적화된 모바일 사용자 경험 (UX)", description: "모바일 접속이 많은 타겟 고객의 특성을 고려하여, 어느 디바이스에서나 완벽한 반응형 뷰를 제공합니다." },
-            { id: "02", title: "초고속 페이지 로딩 아키텍처", description: "방문자가 절대 이탈하지 않도록 차세대 이미지 포맷과 지연 로딩을 통한 1초 이내 로딩을 보장합니다." },
+            { id: "02", title: "초고속 페이지 로딩 아키텍처", description: "방문자가 절대 이탈하지 않도록 최신 WebP/AVIF 이미지 포맷과 지연 로딩을 통한 1초 이내 로딩을 보장합니다." },
             { id: "03", title: "직관적인 예약/문의 시스템 연동", description: "전화 문의와 비즈니스 예약 접수를 즉각적으로 유도하는 맞춤형 액션 폼(CTA)을 적용했습니다." },
             { id: "04", title: "지역 기반 검색 엔진 최적화 (SEO)", description: "타겟 지역 내 잠재 고객이 검색할 때 최우선적으로 브랜드가 노출되도록 철저한 SEO 구조 설계를 반영했습니다." }
         ],

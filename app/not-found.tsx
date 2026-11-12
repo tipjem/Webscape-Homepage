@@ -1,12 +1,11 @@
 'use client';
 
-import { motion } from 'framer-motion';
 import Link from 'next/link';
 import { Search, Home, ArrowLeft } from 'lucide-react';
 
 export default function NotFound() {
   return (
-    <div className="min-h-screen flex items-center justify-center bg-background px-6 relative overflow-hidden">
+    <div className="min-h-[100dvh] flex items-center justify-center bg-background px-6 relative overflow-hidden">
       {/* Background Decor */}
       <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-accent/5 rounded-full blur-[120px] -z-1" />
       <div className="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] bg-purple-500/5 rounded-full blur-[120px] -z-1" />
@@ -38,14 +37,14 @@ export default function NotFound() {
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
           <Link
             href="/"
-            className="w-full sm:w-auto flex items-center justify-center gap-2 bg-accent text-white px-10 py-5 rounded-full font-bold transition-all hover:bg-accent/90 active:scale-95 shadow-xl shadow-accent/20"
+            className="w-full sm:w-auto flex items-center justify-center gap-2 bg-accent text-white px-10 py-5 rounded-full font-bold transition-[background-color,transform,box-shadow] duration-200 hover:bg-accent/90 active:scale-95 shadow-xl shadow-accent/20"
           >
             <Home size={20} />
             <span>홈으로 이동하기</span>
           </Link>
           <Link
             href="/contact"
-            className="w-full sm:w-auto flex items-center justify-center gap-2 bg-white border border-slate-200 text-slate-900 px-10 py-5 rounded-full font-bold transition-all hover:bg-slate-50 active:scale-95"
+            className="w-full sm:w-auto flex items-center justify-center gap-2 bg-white border border-slate-200 text-slate-900 px-10 py-5 rounded-full font-bold transition-[background-color,transform] duration-200 hover:bg-slate-50 active:scale-95"
           >
             <ArrowLeft size={20} />
             <span>문의하기</span>

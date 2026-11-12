@@ -31,25 +31,29 @@ export default function Accordion({ items }: AccordionProps) {
                 return (
                     <div
                         key={item.id}
-                        className="group bg-foreground/5 ring-1 ring-foreground/10 p-1 rounded-2xl flex flex-col transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] hover:shadow-lg hover:shadow-foreground/5 mb-4"
+                        className={`group bg-white/[0.02] ring-1 p-1 rounded-2xl flex flex-col transition-[box-shadow] duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] hover:shadow-lg mb-4 ${
+                            isOpen ? "ring-[#F07A32]/50 shadow-[#F07A32]/10" : "ring-white/10 hover:ring-[#F07A32]/30"
+                        }`}
                     >
-                        <div className="flex flex-col bg-background shadow-[inset_0_1px_1px_rgba(255,255,255,0.05)] rounded-[calc(1rem-0.25rem)] overflow-hidden transition-colors duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]">
+                        <div className="flex flex-col bg-[#211009]/80 shadow-[inset_0_1px_1px_rgba(255,255,255,0.05)] rounded-[calc(1rem-0.25rem)] overflow-hidden transition-colors duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]">
                             <button
                                 onClick={() => toggleItem(item.id)}
                                 className="w-full flex items-center justify-between p-6 text-left outline-none"
                             >
                                 <div>
-                                    <h3 className="text-lg font-semibold text-foreground flex items-center gap-4 break-keep">
+                                    <h3 className={`text-lg font-semibold flex items-center gap-4 break-keep transition-colors ${
+                                        isOpen ? "text-[#F07A32]" : "text-[#F5F1EB] group-hover:text-[#F07A32]"
+                                    }`}>
                                         {item.title}
                                     </h3>
                                     {item.date && (
-                                        <p className="text-sm text-foreground/50 mt-1 break-keep">
+                                        <p className="text-sm text-[#F5F1EB]/50 mt-1 break-keep">
                                             {new Date(item.date).toLocaleDateString()}
                                         </p>
                                     )}
                                 </div>
                                 <ChevronDown
-                                    className={`text-foreground/50 transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] flex-shrink-0 ${isOpen ? "rotate-180" : ""}`}
+                                    className={`text-[#F07A32] transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] flex-shrink-0 ${isOpen ? "rotate-180" : ""}`}
                                 />
                             </button>
                             <AnimatePresence>
@@ -60,7 +64,7 @@ export default function Accordion({ items }: AccordionProps) {
                                         exit={{ height: 0, opacity: 0 }}
                                         transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
                                     >
-                                        <div className="px-6 pb-6 text-foreground/70 leading-relaxed border-t border-foreground/5 mt-2 pt-4 whitespace-pre-wrap break-keep">
+                                        <div className="px-6 pb-6 text-[#F5F1EB]/70 leading-relaxed border-t border-white/5 mt-2 pt-4 whitespace-pre-wrap break-keep">
                                             {item.content}
                                         </div>
                                     </motion.div>

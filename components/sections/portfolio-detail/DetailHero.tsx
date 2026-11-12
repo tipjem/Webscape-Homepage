@@ -76,7 +76,7 @@ export default function DetailHero({ project }: { project: PortfolioItem }) {
                                 href={project.url}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="group inline-flex items-center gap-2 px-8 py-4 bg-accent text-background font-bold rounded-full hover:bg-accent/90 transition-all hover:shadow-[0_0_30px_rgba(59,130,246,0.4)] hover:-translate-y-1 text-lg"
+                                className="group inline-flex items-center gap-2 px-8 py-4 bg-accent text-background font-bold rounded-full hover:bg-accent/90 transition-[transform,background-color,box-shadow] duration-300 hover:shadow-[0_0_30px_rgba(59,130,246,0.4)] hover:-translate-y-1 text-lg"
                             >
                                 샘플 직접 보러가기
                                 <ArrowUpRight className="w-5 h-5 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
@@ -140,7 +140,7 @@ export default function DetailHero({ project }: { project: PortfolioItem }) {
                                     <DeviceMockup 
                                         type={deviceType}
                                         className={cn(
-                                            "group/img cursor-zoom-in transition-all duration-1000",
+                                            "group/img cursor-zoom-in transition-[max-width] duration-700",
                                             deviceType === "iphone" ? "max-w-[280px] md:max-w-[340px]" : "max-w-screen-lg"
                                         )}
                                     >
@@ -198,7 +198,7 @@ export default function DetailHero({ project }: { project: PortfolioItem }) {
                         {project.stats.map((stat, idx) => (
                             <div key={idx} className={cn(
                                 "bg-foreground/5 rounded-[2.5rem] p-10 text-center backdrop-blur-xl border border-foreground/10 shadow-sm",
-                                "hover:border-accent/40 hover:bg-foreground/[0.07] transition-all hover:-translate-y-2 duration-500"
+                                "hover:border-accent/40 hover:bg-foreground/[0.07] transition-[transform,background-color,border-color] hover:-translate-y-2 duration-500"
                             )}>
                                 <h3 className="text-foreground/60 font-semibold mb-4 text-xs md:text-sm uppercase tracking-wider">{stat.label}</h3>
                                 <div className="flex items-baseline justify-center gap-1.5">
@@ -241,10 +241,13 @@ export default function DetailHero({ project }: { project: PortfolioItem }) {
                             className="relative max-w-full max-h-full flex items-center justify-center overflow-hidden"
                             onClick={(e) => e.stopPropagation()}
                         >
-                            <img
+                            <Image
                                 src={selectedImage}
                                 alt="확대된 포트폴리오 이미지"
-                                className="max-w-full max-h-[95vh] object-contain rounded-xl shadow-2xl"
+                                width={1920}
+                                height={1080}
+                                unoptimized
+                                className="max-w-full max-h-[95vh] w-auto h-auto object-contain rounded-xl shadow-2xl"
                             />
                         </motion.div>
                     </motion.div>

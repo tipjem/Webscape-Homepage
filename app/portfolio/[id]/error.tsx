@@ -16,7 +16,7 @@ export default function PortfolioError({
   }, [error]);
 
   return (
-    <main className="min-h-screen flex flex-col items-center justify-center p-6 text-center bg-background">
+    <main className="min-h-[100dvh] flex flex-col items-center justify-center p-6 text-center bg-background">
       <div className="w-24 h-24 bg-red-500/10 rounded-full flex items-center justify-center mb-8 border border-red-500/20">
         <span className="text-4xl text-red-500">!</span>
       </div>
@@ -30,13 +30,13 @@ export default function PortfolioError({
       <div className="flex flex-col sm:flex-row items-center gap-4">
         <button
           onClick={() => reset()}
-          className="inline-flex items-center gap-3 px-8 py-4 rounded-full bg-accent text-white font-bold hover:scale-105 active:scale-95 transition-all shadow-lg"
+          className="inline-flex items-center gap-3 px-8 py-4 rounded-full bg-accent text-white font-bold hover:scale-105 active:scale-95 transition-[transform,background-color,box-shadow] duration-200 shadow-lg"
         >
           <RefreshCcw size={20} /> 다시 시도하기
         </button>
         <Link
           href="/portfolio"
-          className="inline-flex items-center gap-3 px-8 py-4 rounded-full bg-foreground/5 text-foreground font-bold hover:bg-foreground/10 transition-all border border-foreground/10"
+          className="inline-flex items-center gap-3 px-8 py-4 rounded-full bg-foreground/5 text-foreground font-bold hover:bg-foreground/10 transition-[background-color,transform] duration-200 border border-foreground/10"
         >
           <ArrowLeft size={20} /> 포트폴리오 목록으로
         </Link>

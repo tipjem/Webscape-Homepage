@@ -1,6 +1,6 @@
 ---
 name: nextjs-page-builder
-description: Next.js App Router 기반 페이지 및 컴포넌트 생성 가이드 (범용)
+description: Next.js App Router 기반 페이지 및 컴포넌트 생성 가이드 (최신 표준)
 ---
 
 # Next.js 페이지 빌더 스킬
@@ -10,7 +10,7 @@ description: Next.js App Router 기반 페이지 및 컴포넌트 생성 가이�
 app/
 ├── layout.tsx              # 루트 레이아웃 (html, body, 네비게이션, 푸터)
 ├── page.tsx                # 홈페이지 (/)
-├── globals.css             # 글로벌 스타일
+├── globals.css             # 글로벌 스타일 (Tailwind v4 theme import)
 ├── about/
 │   └── page.tsx            # /about
 ├── services/
@@ -31,7 +31,7 @@ components/
 ├── sections/               # 페이지 섹션 (Hero, Services, CTA 등)
 └── features/               # 기능 단위 컴포넌트 (폼, 인증 등)
 lib/
-├── utils.ts                # 유틸리티 함수
+├── utils.ts                # 유틸리티 함수 (cn 등)
 ├── constants.ts            # 상수 값
 └── api.ts                  # API 관련 로직
 hooks/
@@ -52,8 +52,14 @@ public/
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: '소개 | {사이트명}',
-  description: '페이지 설명 (150자 이내)',
+  // PRD 기반 필수 공식: [지역명] + [핵심 서비스] | [상호명]
+  title: '[지역명] [핵심 서비스] | [상호명]',
+  description: 'PRD 기반 핵심 가치와 연락처를 80자 이내로 명확하게 요약',
+  openGraph: {
+    title: '[지역명] [핵심 서비스] | [상호명]',
+    description: 'PRD 기반 핵심 가치와 대표 연락처 요약',
+    images: [{ url: '/images/og-main.jpg', width: 1200, height: 630, alt: '[상호명] 대표 썸네일' }],
+  },
 };
 
 export default function AboutPage() {
@@ -75,7 +81,8 @@ import { useState } from 'react';
 export default function ContactForm() {
   const [formData, setFormData] = useState({
     name: '',
-    email: '',
+    phone: '',
+    service: '',
     message: '',
   });
 
@@ -89,7 +96,7 @@ export default function ContactForm() {
 ```tsx
 // app/loading.tsx
 export default function Loading() {
-  return <div>Loading...</div>;
+  return <div className="min-h-[50vh] flex items-center justify-center">Loading...</div>;
 }
 ```
 
@@ -99,7 +106,7 @@ export default function Loading() {
 'use client';
 
 export default function Error({ error }: { error: Error }) {
-  return <div>Error: {error.message}</div>;
+  return <div className="min-h-[50vh] flex items-center justify-center">오류가 발생했습니다: {error.message}</div>;
 }
 ```
 
@@ -107,37 +114,37 @@ export default function Error({ error }: { error: Error }) {
 ```tsx
 // app/not-found.tsx
 export default function NotFound() {
-  return <div>Page Not Found</div>;
+  return <div className="min-h-[50vh] flex items-center justify-center">페이지를 찾을 수 없습니다.</div>;
 }
 ```
 
-## 필수 홈페이지 섹션
-1. Hero — 메인 비주얼 + CTA 버튼 + 핵심 메시지
-2. Services — 제공 서비스 카드 그리드
-3. About — 소개 + 이미지/사진
-4. Testimonials — 고객 후기 (캐러셀 또는 그리드)
-5. Contact/CTA — 문의 폼 또는 연락처
-6. Footer — 링크, 저작권, SNS 아이콘
+## 필수 홈페이지 섹션 구성 (Anti-Template Bento Grid)
+1. **Hero** — 메인 비주얼 + 전환 CTA 버튼 + 핵심 가치 전달
+2. **Services** — 동일 3열 카드가 아닌 **비대칭 벤토 그리드(Bento Grid) 및 더블 베젤 카드**
+3. **About** — 대표자/에이전시 철학 소개 + 고해상도 비주얼
+4. **Portfolio/Proof** — 실무 작업물 및 신뢰 데이터 (구체적 숫자 활용)
+5. **Contact/CTA** — 직관적인 문의 폼 및 하단 Sticky/Fixed 전화 상담 버튼
+6. **Footer** — 상호명, 사업자 정보, 저작권, 필수 링크
 
 ## 컴포넌트 작성 규칙
-- 서버 컴포넌트 우선, 필요한 경우에만 'use client'
-- next/image로 이미지 최적화
-- next/link로 내부 네비게이션
-- 스타일 방식 선택:
-  - CSS Modules 또는
-  - Tailwind CSS (권장)
-- props에 TypeScript 타입 정의 필수
-- 재사용 가능한 UI는 components/ui에 분리
+- 서버 컴포넌트 우선, 인터랙션이 필요한 경우에만 `'use client'`
+- `next/image`로 이미지 최적화 및 `priority` 설정 (LCP 최적화)
+- `next/link`로 내부 네비게이션
+- **스타일 방식:** Tailwind CSS v4 단일화 (CSS Modules 사용 금지, HSL 테마 토큰 활용)
+- props에 TypeScript 인터페이스 타입 정의 필수
+- 재사용 가능한 UI는 `components/ui`에 분리
 
 ## 관련 스킬
-- SEO 최적화 → `seo-optimize` 스킬 참조
+- SEO & AEO 최적화 → `seo-optimize` 스킬 참조
 - 성능 최적화 & 반응형 → `performance` 스킬 참조
 - 디자인 토큰 & 컴포넌트 → `design-system` 스킬 참조
+- 종합 에이전시 워크플로우 → `agency-web-master` 스킬 참조
 
 ## 체크리스트
 - [ ] App Router 구조로 페이지 생성
-- [ ] 시맨틱 HTML (section, article, nav 등)
+- [ ] 시맨틱 HTML (header, main, section, article, nav, footer)
 - [ ] next/image, next/link 사용
 - [ ] 서버/클라이언트 컴포넌트 분리
 - [ ] TypeScript 타입 정의
 - [ ] loading / error / not-found 구성
+- [ ] 동일 규격 3열 카드 대신 비대칭 벤토 그리드 적용

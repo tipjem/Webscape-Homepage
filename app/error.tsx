@@ -18,7 +18,7 @@ export default function Error({
   }, [error]);
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-background px-6">
+    <div className="min-h-[100dvh] flex items-center justify-center bg-background px-6">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -41,14 +41,14 @@ export default function Error({
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
           <button
             onClick={() => reset()}
-            className="w-full sm:w-auto flex items-center justify-center gap-2 bg-slate-900 text-white px-8 py-4 rounded-full font-bold transition-all hover:bg-slate-800 active:scale-95 shadow-lg"
+            className="w-full sm:w-auto flex items-center justify-center gap-2 bg-slate-900 text-white px-8 py-4 rounded-full font-bold transition-[background-color,transform,box-shadow] duration-200 hover:bg-slate-800 active:scale-95 shadow-lg"
           >
             <RotateCcw size={20} />
             <span>다시 시도하기</span>
           </button>
           <Link
             href="/"
-            className="w-full sm:w-auto flex items-center justify-center gap-2 bg-white border border-slate-200 text-slate-900 px-8 py-4 rounded-full font-bold transition-all hover:bg-slate-50 active:scale-95"
+            className="w-full sm:w-auto flex items-center justify-center gap-2 bg-white border border-slate-200 text-slate-900 px-8 py-4 rounded-full font-bold transition-[background-color,transform] duration-200 hover:bg-slate-50 active:scale-95"
           >
             <Home size={20} />
             <span>홈으로 이동</span>

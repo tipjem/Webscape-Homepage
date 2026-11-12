@@ -67,21 +67,21 @@ export default function ContactPage() {
     };
 
     const inputClasses =
-        "w-full px-4 py-3 bg-foreground/[0.03] border border-foreground/10 rounded-xl focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-all text-foreground";
-    const labelClasses = "block text-sm font-medium text-foreground/80 mb-2";
+        "w-full px-4 py-3 bg-[#160B07] border border-white/10 rounded-xl focus:outline-none focus:border-[#F07A32] focus:ring-1 focus:ring-[#F07A32] transition-[border-color,box-shadow] duration-200 text-[#F5F1EB] placeholder:text-[#F5F1EB]/30";
+    const labelClasses = "block text-sm font-medium text-[#F5F1EB]/80 mb-2";
 
     return (
-        <div className="bg-background min-h-screen pt-32 pb-24 relative overflow-hidden">
+        <div className="bg-[#160B07] min-h-[100dvh] pt-32 pb-24 relative overflow-hidden text-[#F5F1EB]">
             {/* Background glow */}
-            <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-accent/20 rounded-full blur-[120px] -translate-y-1/2 translate-x-1/2 pointer-events-none" />
-            <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-purple-500/10 rounded-full blur-[120px] translate-y-1/2 -translate-x-1/2 pointer-events-none" />
+            <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#F07A32]/10 rounded-full blur-[120px] -translate-y-1/2 translate-x-1/2 pointer-events-none" />
+            <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-[#D95F20]/10 rounded-full blur-[120px] translate-y-1/2 -translate-x-1/2 pointer-events-none" />
 
             <div className="container mx-auto px-6 max-w-3xl relative z-10">
                 <div className="text-center mb-12">
                     <motion.h1
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
-                        className="text-4xl md:text-5xl font-bold tracking-tighter mb-4 text-foreground"
+                        className="text-4xl md:text-5xl font-bold tracking-tighter mb-4 text-[#F5F1EB]"
                     >
                         프로젝트 문의
                     </motion.h1>
@@ -89,25 +89,25 @@ export default function ContactPage() {
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.1 }}
-                        className="text-foreground/70 text-lg"
+                        className="text-[#F5F1EB]/70 text-lg"
                     >
-                        웹스케이프와 함께 한계 없는 웹 브랜딩을 시작하세요.
+                        웹스케이프와 함께 AI와 검색에 강한 웹 브랜딩을 시작하세요.
                     </motion.p>
                 </div>
 
                 {/* Custom Tabs */}
-                <div className="flex p-1 bg-foreground/5 rounded-2xl mb-12">
+                <div className="flex p-1 bg-[#211009] border border-white/10 rounded-2xl mb-12 shadow-inner">
                     <button
                         onClick={() => setActiveTab("new")}
                         className={cn(
-                            "flex-1 py-3 text-sm font-bold rounded-xl transition-all relative",
-                            activeTab === "new" ? "text-background" : "text-foreground hover:text-foreground/80"
+                            "flex-1 py-3 text-sm font-bold rounded-xl transition-colors duration-200 relative",
+                            activeTab === "new" ? "text-[#160B07]" : "text-[#F5F1EB]/70 hover:text-[#F5F1EB]"
                         )}
                     >
                         {activeTab === "new" && (
                             <motion.div
                                 layoutId="tab-indicator"
-                                className="absolute inset-0 bg-foreground rounded-xl"
+                                className="absolute inset-0 bg-[#F07A32] rounded-xl shadow-md shadow-[#F07A32]/20"
                                 transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
                             />
                         )}
@@ -116,14 +116,14 @@ export default function ContactPage() {
                     <button
                         onClick={() => setActiveTab("modify")}
                         className={cn(
-                            "flex-1 py-3 text-sm font-bold rounded-xl transition-all relative",
-                            activeTab === "modify" ? "text-background" : "text-foreground hover:text-foreground/80"
+                            "flex-1 py-3 text-sm font-bold rounded-xl transition-colors duration-200 relative",
+                            activeTab === "modify" ? "text-[#160B07]" : "text-[#F5F1EB]/70 hover:text-[#F5F1EB]"
                         )}
                     >
                         {activeTab === "modify" && (
                             <motion.div
                                 layoutId="tab-indicator"
-                                className="absolute inset-0 bg-foreground rounded-xl"
+                                className="absolute inset-0 bg-[#F07A32] rounded-xl shadow-md shadow-[#F07A32]/20"
                                 transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
                             />
                         )}
@@ -132,8 +132,8 @@ export default function ContactPage() {
                 </div>
 
                 {/* Form Container */}
-                <form onSubmit={handleSubmit} className="group bg-foreground/5 ring-1 ring-foreground/10 p-1.5 rounded-[2.5rem] shadow-sm transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] hover:shadow-2xl hover:shadow-accent/5">
-                    <div className="bg-background shadow-[inset_0_1px_1px_rgba(255,255,255,0.05)] rounded-[calc(2.5rem-0.375rem)] p-8 md:p-10 transition-colors duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]">
+                <form onSubmit={handleSubmit} className="group bg-white/[0.02] ring-1 ring-white/10 p-1.5 rounded-[2.5rem] shadow-2xl transition-shadow duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] hover:shadow-[#F07A32]/10">
+                    <div className="bg-[#211009]/80 border border-white/5 shadow-[inset_0_1px_1px_rgba(255,255,255,0.05)] rounded-[calc(2.5rem-0.375rem)] p-8 md:p-10 transition-colors duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]">
                     <AnimatePresence mode="wait">
                         {activeTab === "new" ? (
                             <motion.div
@@ -180,8 +180,8 @@ export default function ContactPage() {
                                                 onChange={(e) => setBudget(e.target.value)}
                                                 className={cn(
                                                     inputClasses,
-                                                    "appearance-none bg-transparent",
-                                                    budget === "" ? "text-gray-400 dark:text-gray-500" : "text-foreground"
+                                                    "appearance-none bg-[#160B07]",
+                                                    budget === "" ? "text-[#F5F1EB]/40" : "text-[#F5F1EB]"
                                                 )}
                                             >
                                                 <option value="" disabled selected>예산 범위를 선택해주세요</option>
@@ -191,7 +191,7 @@ export default function ContactPage() {
                                                 <option value="over-1000">1,000만 원 이상</option>
                                                 <option value="undetermined">예산 미정</option>
                                             </select>
-                                            <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-foreground/40 font-bold">↓</div>
+                                            <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-[#F5F1EB]/40 font-bold">↓</div>
                                         </div>
                                     </div>
                                     <div>
@@ -204,8 +204,8 @@ export default function ContactPage() {
                                                 onChange={(e) => setTimeline(e.target.value)}
                                                 className={cn(
                                                     inputClasses,
-                                                    "appearance-none bg-transparent",
-                                                    timeline === "" ? "text-gray-400 dark:text-gray-500" : "text-foreground"
+                                                    "appearance-none bg-[#160B07]",
+                                                    timeline === "" ? "text-[#F5F1EB]/40" : "text-[#F5F1EB]"
                                                 )}
                                             >
                                                 <option value="" disabled selected>일정을 선택해주세요</option>
@@ -214,7 +214,7 @@ export default function ContactPage() {
                                                 <option value="over-3months">3개월 이상 (여유로움)</option>
                                                 <option value="undetermined">미정</option>
                                             </select>
-                                            <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-foreground/40 font-bold">↓</div>
+                                            <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-[#F5F1EB]/40 font-bold">↓</div>
                                         </div>
                                     </div>
                                 </div>
@@ -288,17 +288,17 @@ export default function ContactPage() {
                     {/* Common Fields for both tabs */}
                     <div className="mt-6">
                         <label className={labelClasses}>첨부 파일 (선택)</label>
-                        <div className="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-foreground/10 border-dashed rounded-xl transition-colors cursor-pointer block">
+                        <div className="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-white/10 border-dashed rounded-xl bg-[#160B07]/40 transition-colors cursor-pointer block hover:border-[#F07A32]/40">
                             <div className="space-y-1 text-center">
-                                <Upload className="mx-auto h-12 w-12 text-foreground/30" />
-                                <div className="flex text-sm text-foreground/60 justify-center">
-                                    <label htmlFor="file-upload" className="relative cursor-pointer bg-transparent rounded-md font-medium text-accent hover:text-accent/80">
+                                <Upload className="mx-auto h-12 w-12 text-[#F5F1EB]/30" />
+                                <div className="flex text-sm text-[#F5F1EB]/60 justify-center">
+                                    <label htmlFor="file-upload" className="relative cursor-pointer bg-transparent rounded-md font-medium text-[#F07A32] hover:text-[#FF6B35]">
                                         <span>파일 업로드</span>
                                         <input id="file-upload" name="file-upload" type="file" className="sr-only" />
                                     </label>
                                     <p className="pl-1">또는 드래그 앤 드롭</p>
                                 </div>
-                                <p className="text-xs text-foreground/40">PNG, JPG, PDF 최대 10MB</p>
+                                <p className="text-xs text-[#F5F1EB]/40">PNG, JPG, PDF 최대 10MB</p>
                             </div>
                         </div>
                     </div>
@@ -310,11 +310,11 @@ export default function ContactPage() {
                                 name="privacy"
                                 type="checkbox"
                                 required
-                                className="w-4 h-4 rounded border-foreground/20 text-accent focus:ring-accent bg-background"
+                                className="w-4 h-4 rounded border-white/20 text-[#F07A32] focus:ring-[#F07A32] bg-[#160B07] accent-[#F07A32]"
                             />
                         </div>
                         <div className="ml-3 text-sm">
-                            <label htmlFor="privacy" className="font-medium text-foreground/70">
+                            <label htmlFor="privacy" className="font-medium text-[#F5F1EB]/70">
                                 개인정보 수집 및 이용에 동의합니다. *
                             </label>
                         </div>
@@ -324,11 +324,11 @@ export default function ContactPage() {
                         <button
                             type="submit"
                             disabled={isSubmitting}
-                            className="w-full relative flex items-center justify-center bg-accent text-white px-8 py-5 rounded-full font-bold text-lg transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] hover:scale-[1.02] hover:bg-accent/90 active:scale-[0.98] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-accent disabled:opacity-50 disabled:cursor-not-allowed shadow-[0_0_40px_rgba(59,130,246,0.2)]"
+                            className="w-full relative flex items-center justify-center bg-[#F07A32] text-[#160B07] px-8 py-5 rounded-full font-extrabold text-lg transition-[transform,background-color,box-shadow] duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] hover:scale-[1.02] hover:bg-[#FF6B35] active:scale-[0.98] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#F07A32] disabled:opacity-50 disabled:cursor-not-allowed shadow-[0_0_40px_rgba(240,122,50,0.35)]"
                         >
                             {isSubmitting ? (
                                 <span className="flex items-center gap-2 relative z-10">
-                                    <span className="h-4 w-4 rounded-full border-2 border-white/20 border-t-white animate-spin"></span>
+                                    <span className="h-4 w-4 rounded-full border-2 border-[#160B07]/20 border-t-[#160B07] animate-spin"></span>
                                     접수 처리 중...
                                 </span>
                             ) : (
@@ -353,8 +353,8 @@ export default function ContactPage() {
                         <div className={cn(
                             "flex items-center gap-3 px-6 py-4 rounded-full shadow-2xl backdrop-blur-md text-sm font-medium border",
                             toast.type === "success"
-                                ? "bg-emerald-500/10 border-emerald-500/20 text-emerald-600 dark:text-emerald-400"
-                                : "bg-red-500/10 border-red-500/20 text-red-600 dark:text-red-400"
+                                ? "bg-[#211009] border-[#F07A32]/40 text-[#F07A32]"
+                                : "bg-[#211009] border-red-500/40 text-red-400"
                         )}>
                             {toast.type === "success" ? <CheckCircle2 size={20} /> : <AlertCircle size={20} />}
                             {toast.msg}

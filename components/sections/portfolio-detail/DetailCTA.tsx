@@ -44,7 +44,7 @@ export default function DetailCTA() {
                         href="/contact"
                         className={cn(
                             "group inline-flex items-center justify-center space-x-4 bg-accent text-white",
-                            "px-10 md:px-16 py-6 md:py-8 rounded-full text-xl md:text-2xl font-bold transition-all",
+                            "px-10 md:px-16 py-6 md:py-8 rounded-full text-xl md:text-2xl font-bold transition-[transform,box-shadow] duration-300",
                             "hover:scale-105 active:scale-95 shadow-[0_0_60px_rgba(59,130,246,0.6)] border border-accent/60 relative overflow-hidden"
                         )}
                     >

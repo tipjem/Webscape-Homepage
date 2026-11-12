@@ -1,10 +1,8 @@
 "use client";
 
-import { motion } from "framer-motion";
-
 export default function PortfolioLoading() {
   return (
-    <main className="min-h-screen bg-background pt-32 pb-24">
+    <main className="min-h-[100dvh] bg-background pt-32 pb-24">
       <div className="container mx-auto px-6 max-w-7xl relative z-10">
         {/* Hero Skeleton */}
         <div className="text-center max-w-4xl mx-auto mb-20">

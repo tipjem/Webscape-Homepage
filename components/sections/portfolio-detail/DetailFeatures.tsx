@@ -26,7 +26,7 @@ export default function DetailFeatures({ project }: { project: PortfolioItem }) 
                             transition={{ delay: idx * 0.1, duration: 0.7 }}
                             className={cn(
                                 "group relative bg-foreground/5 rounded-[2rem] p-10 overflow-hidden border border-foreground/10",
-                                "hover:border-accent/40 hover:bg-foreground/[0.07] transition-all duration-500 hover:shadow-2xl hover:shadow-accent/5",
+                                "hover:border-accent/40 hover:bg-foreground/[0.07] transition-[background-color,border-color,box-shadow] duration-500 hover:shadow-2xl hover:shadow-accent/5",
                                 "grid grid-rows-[auto_1fr] md:grid-rows-subgrid md:row-span-2 gap-y-4 md:gap-y-0",
                                 "will-change-transform" // CSS 레이어 성능 최적화
                             )}

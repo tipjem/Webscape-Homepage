@@ -30,7 +30,7 @@ export default function DetailCoverage({ project }: { project: PortfolioItem }) 
                                     transition={{ delay: i * 0.1 }}
                                     className={cn(
                                         "flex items-center gap-4 bg-foreground/5 p-5 md:p-6 rounded-2xl border border-foreground/10",
-                                        "hover:border-accent/40 hover:bg-background hover:shadow-xl transition-all cursor-default"
+                                        "hover:border-accent/40 hover:bg-background hover:shadow-xl transition-[border-color,background-color,box-shadow] duration-300 cursor-default"
                                     )}
                                 >
                                     <div className="w-3 h-3 rounded-full bg-accent animate-pulse" />

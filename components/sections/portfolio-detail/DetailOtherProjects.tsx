@@ -1,6 +1,5 @@
 "use client";
 
-import { motion } from "framer-motion";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { PORTFOLIO_DATA } from "@/src/data/portfolio";
@@ -24,7 +23,7 @@ export default function DetailOtherProjects({ currentId }: { currentId: number }
                     />
                     <Link href="/portfolio" className={cn(
                         "group inline-flex items-center gap-3 px-8 py-4 rounded-full bg-background border border-foreground/15 text-foreground font-bold",
-                        "hover:border-accent hover:text-accent transition-all hover:shadow-lg dark:hover:bg-foreground/[0.02]"
+                        "hover:border-accent hover:text-accent transition-[border-color,color,box-shadow,background-color] duration-200 hover:shadow-lg dark:hover:bg-foreground/[0.02]"
                     )}>
                         전체 리스트 보기 <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
                     </Link>

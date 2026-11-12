@@ -20,7 +20,7 @@ export function PortfolioCard({ project, idx = 0, className }: PortfolioCardProp
             viewport={{ once: true }}
             transition={{ delay: idx * 0.1, duration: 0.6 }}
             className={cn(
-                "group bg-background rounded-[2.5rem] overflow-hidden ring-1 ring-foreground/5 hover:ring-accent/40 hover:-translate-y-3 transition-all duration-700 shadow-sm hover:shadow-2xl",
+                "group bg-[#211009]/80 backdrop-blur-xl rounded-[2.5rem] overflow-hidden ring-1 ring-white/10 hover:ring-[#F07A32]/40 hover:-translate-y-3 transition-[transform,box-shadow] duration-700 shadow-sm hover:shadow-2xl hover:shadow-[#F07A32]/10",
                 "will-change-transform", // 레이어 최적화
                 className
             )}
@@ -31,7 +31,7 @@ export function PortfolioCard({ project, idx = 0, className }: PortfolioCardProp
                 rel="noopener noreferrer"
                 className="flex flex-col h-full"
             >
-                <div className="relative w-full h-64 bg-foreground/5 overflow-hidden">
+                <div className="relative w-full h-64 bg-[#160B07] overflow-hidden">
                     {project.image ? (
                         <Image
                             src={project.image}
@@ -43,24 +43,24 @@ export function PortfolioCard({ project, idx = 0, className }: PortfolioCardProp
                             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                         />
                     ) : (
-                        <div className="w-full h-full flex flex-col items-center justify-center text-foreground/20 text-sm font-bold gap-3 p-4 text-center">
+                        <div className="w-full h-full flex flex-col items-center justify-center text-[#F5F1EB]/20 text-sm font-bold gap-3 p-4 text-center">
                             <span>Image Placeholder</span>
                         </div>
                     )}
-                    <div className="absolute inset-0 bg-gradient-to-t from-background/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#160B07]/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
                 </div>
                 <div className="p-10 flex flex-col flex-1">
-                    <div className="text-xs font-bold text-accent mb-4 uppercase tracking-widest bg-accent/5 py-1 px-3 rounded-full w-fit">
+                    <div className="text-xs font-bold text-[#F07A32] mb-4 uppercase tracking-widest bg-[#F07A32]/10 border border-[#F07A32]/20 py-1 px-3 rounded-full w-fit">
                         {project.category}
                     </div>
-                    <h3 className="text-2xl md:text-3xl font-bold text-foreground mb-4 group-hover:text-accent transition-colors break-keep leading-tight">
+                    <h3 className="text-2xl md:text-3xl font-bold text-[#F5F1EB] mb-4 group-hover:text-[#F07A32] transition-colors break-keep leading-tight">
                         {project.title}
                     </h3>
-                    <p className="text-foreground/60 line-clamp-2 leading-relaxed break-keep text-lg">
+                    <p className="text-[#F5F1EB]/60 line-clamp-2 leading-relaxed break-keep text-lg">
                         {project.description}
                     </p>
 
-                    <div className="mt-8 pt-8 border-t border-foreground/5 flex items-center gap-2 text-accent font-bold group-hover:underline">
+                    <div className="mt-8 pt-8 border-t border-white/5 flex items-center gap-2 text-[#F07A32] font-bold group-hover:underline">
                         <span>사이트 바로가기</span> <ArrowUpRight size={16} />
                     </div>
                 </div>

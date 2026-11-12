@@ -69,7 +69,7 @@ export default async function PortfolioDetailPage({ params }: { params: Promise<
   }
 
   return (
-    <main className="min-h-screen w-full bg-background">
+    <main className="min-h-[100dvh] w-full bg-background">
       <article className="w-full flex flex-col">
         <DetailHero project={project} />
         <DetailFeatures project={project} />
